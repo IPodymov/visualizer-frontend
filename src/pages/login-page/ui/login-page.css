@@ -1,0 +1,10 @@
+.hint-text {
+  text-align: center;
+  color: var(--text);
+  font-size: 0.95rem;
+  margin-top: 1rem;
+}
+
+.hint-text a {
+  font-weight: 500;
+}

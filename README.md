@@ -1,0 +1,79 @@
+# Academic Plan Visualizer (Frontend)
+
+Веб-приложение для визуализации, анализа и сравнения учебных планов высших учебных заведений. Позволяет студентам и преподавателям наглядно оценивать структуру образовательных программ.
+
+## 🚀 Функциональность
+
+*   **Каталог планов**: Просмотр и поиск учебных планов с фильтрацией.
+*   **Сравнение**: Выбор нескольких планов для одновременного анализа (side-by-side).
+*   **Визуализация**: Графическое представление нагрузки и структуры дисциплин ("Вычислительный ландшафт").
+*   **Личный кабинет**: Авторизация и регистрация пользователей.
+*   **Адаптивный интерфейс**: Поддержка мобильных устройств и десктопов.
+
+## 🛠 Технологический стек
+
+*   **Core**: React 18, TypeScript, Vite
+*   **State Management**: Redux Toolkit, RTK Query
+*   **Routing**: React Router v6
+*   **Styling**: CSS (с использованием CSS Variables и адаптивной верстки)
+*   **Архитектура**: Feature-Sliced Design (FSD)
+*   **Утилиты**: html2canvas, jspdf
+
+## 📦 Установка и запуск
+
+1.  **Клонируйте репозиторий**:
+    ```bash
+    git clone https://github.com/your-username/visualiser-front.git
+    cd visualiser-front
+    ```
+
+2.  **Установите зависимости**:
+    ```bash
+    npm install
+    # или
+    yarn install
+    ```
+
+3.  **Настройте переменные окружения**:
+    Создайте файл `.env` в корне проекта (можно скопировать из `.env.example`, если есть):
+    ```env
+    VITE_API_URL=https://visualizer-back-production.up.railway.app
+    ```
+
+4.  **Запустите режим разработки**:
+    ```bash
+    npm run dev
+    ```
+    Приложение будет доступно по адресу `http://localhost:5173`.
+
+5.  **Сборка для продакшена**:
+    ```bash
+    npm run build
+    ```
+
+## 📂 Структура проекта
+
+Проект следует методологии **Feature-Sliced Design**. Подробное описание архитектуры доступно в [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md).
+
+```
+src/
+├── app/          # Инициализация, стили, провайдеры
+├── pages/        # Страницы приложения (Home, Login, Compare, etc.)
+├── widgets/      # Крупные самостоятельные блоки UI (Header, Charts)
+├── features/     # Сценарии использования (Auth, PlanComparison)
+├── entities/     # Бизнес-сущности (Plan, User, Session)
+└── shared/       # Общие компоненты, утилиты, API
+```
+
+## 📖 Документация
+
+*   [Архитектура проекта](docs/ARCHITECTURE.md)
+*   [Описание функциональности](docs/FEATURES.md)
+
+## 🔗 Backend API
+
+*   **Base URL**: `https://visualizer-back-production.up.railway.app`
+*   **API Version**: `/api/v1`
+
+---
+Разработано в рамках проектной деятельности.

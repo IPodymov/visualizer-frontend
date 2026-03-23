@@ -1,0 +1,136 @@
+.plan-map-wrapper {
+  /* margin-top: 16px; - Removed to prevent jump */
+  background-color: var(--card-bg);
+  /* border: 1px solid var(--border); */
+  /* Remove wrapper border if unnecessary within details block */
+  /* border-radius: 4px; - Handled by parent */
+  overflow: hidden;
+  /* width: 100%; - Handled by parent */
+  max-width: 100%; /* Ensure strict container width */
+}
+
+.plan-map-container {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: auto;
+  font-family: var(--sans, sans-serif);
+  padding: 16px;
+  box-sizing: border-box; /* Crucial for width: 100% + padding */
+}
+
+.plan-map-controls {
+  display: flex;
+  justify-content: flex-end;
+  padding: 0 16px 16px; 
+}
+
+.pdf-download-btn {
+  padding: 8px 16px;
+  background-color: var(--primary);
+  color: white;
+  border: none;
+  cursor: pointer;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: background-color 0.2s;
+}
+
+.pdf-download-btn:hover {
+  background-color: #1e40af;
+}
+
+.plan-grid {
+  display: grid;
+  /* 50px for Z.E. column, rest flexible but minimum 140px */
+  gap: 8px; /* Slightly larger gap for cleaner look */
+  padding: 4px;
+  background-color: var(--card-bg);
+  /* No outer border for the grid itself, clean look */
+}
+
+/* Header Cells (Semesters) */
+.semester-header {
+  background-color: #F1F5F9; /* Slate 100 */
+  color: var(--text);
+  font-weight: 600;
+  text-align: center;
+  padding: 8px;
+  border-radius: 6px;
+  grid-row: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.9rem;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.05); /* Subtle depth */
+}
+
+/* Row Headers (Z.E. numbers) */
+.ze-header {
+  background-color: #F8FAFC; 
+  color: #94A3B8; /* Slate 400 */
+  text-align: center;
+  font-size: 0.8rem;
+  font-weight: 500;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  grid-column: 1;
+}
+
+/* Plan Items */
+.plan-item {
+  padding: 4px;
+  font-size: 0.75rem;
+  line-height: 1.25;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  overflow: hidden;
+  word-break: break-word;
+  hyphens: auto;
+  color: #1E293B;
+  transition: transform 0.15s, box-shadow 0.15s;
+  border: 1px solid transparent; /* Prepare for border color matches */
+}
+
+.plan-item:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+  z-index: 10;
+}
+
+/* Pastel Color Schemes matching the image vibe */
+/* 1: Yellow/Beige */
+.color-scheme-1 { 
+    background-color: #FFF7ED; /* Orange 50 */
+    border-color: #FED7AA; /* Orange 200 */
+} 
+/* 2: Green/Teal */
+.color-scheme-2 { 
+    background-color: #ECFDF5; /* Emerald 50 */
+    border-color: #A7F3D0; /* Emerald 200 */
+}
+/* 3: Blue */
+.color-scheme-3 { 
+    background-color: #EFF6FF; /* Blue 50 */
+    border-color: #BFDBFE; /* Blue 200 */
+}
+/* 4: Purple */
+.color-scheme-4 { 
+    background-color: #FAF5FF; /* Purple 50 */
+    border-color: #DDD6FE; /* Purple 200 */
+}
+/* 5: Red/Rose */
+.color-scheme-5 { 
+    background-color: #FFF1F2; /* Rose 50 */
+    border-color: #FECDD3; /* Rose 200 */
+}
+/* 6: Indigo */
+.color-scheme-6 { 
+    background-color: #EEF2FF; /* Indigo 50 */
+    border-color: #C7D2FE; /* Indigo 200 */
+}

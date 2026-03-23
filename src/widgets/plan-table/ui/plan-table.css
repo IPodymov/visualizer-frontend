@@ -1,0 +1,91 @@
+.plan-table-wrapper {
+    /* margin: 20px 0; - Removed to prevent jump */
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    overflow-x: auto;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    /* Border is now handled by parent .plan-details styles */
+}
+
+.plan-table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #fff;
+    min-width: 800px;
+    border: none; /* Let wrapper handle border */
+}
+
+.plan-table th,
+.plan-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: center;
+}
+/* ... rest ... */
+
+.plan-table th {
+    background-color: #f8f9fa;
+    font-weight: 600;
+    vertical-align: middle;
+}
+
+.plan-table td.text-left {
+    text-align: left;
+}
+
+.plan-table thead th.rotate {
+    height: 100px;
+    white-space: nowrap;
+}
+
+.plan-table thead th.rotate > div {
+    transform: rotate(270deg);
+    width: 30px;
+}
+
+.plan-details-summary {
+    cursor: pointer;
+    font-weight: bold;
+    padding: 10px;
+    background-color: #f0f2f5;
+    border-radius: 4px;
+    margin-bottom: 10px;
+    user-select: none;
+    list-style: none; /* Hide default triangle */
+}
+
+/* Custom indicator for summary */
+.plan-details-summary::-webkit-details-marker {
+    display: none;
+}
+
+.plan-details-summary::after {
+    content: '+';
+    float: right;
+    font-weight: bold;
+}
+
+details[open] .plan-details-summary::after {
+    content: '-';
+}
+
+.control-type {
+    font-size: 11px;
+    color: #666;
+    display: block;
+}
+
+.semester-headers th {
+    background-color: #e9ecef;
+}
+
+/* Zebra striping */
+.plan-table tbody tr:nth-child(even) {
+    background-color: #f8f9fa;
+}
+
+.plan-table tbody tr:hover {
+    background-color: #f1f3f5;
+}
