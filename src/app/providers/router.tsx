@@ -5,6 +5,7 @@ import { LoginPage } from '../../pages/login-page';
 import { HomePage } from '../../pages/home-page';
 import { RegisterPage } from '../../pages/register-page';
 import { PlanDetailsPage } from '../../pages/plan-details-page/ui/plan-details-page';
+import { ProfilePage } from '../../pages/profile-page';
 import { ComparePage } from '../../pages/compare-page';
 import { ROUTES } from '../../shared/lib/routes';
 import { Header } from '../../widgets/header';
@@ -48,6 +49,7 @@ export const AppRouter = () => {
               }
             />
             <Route path={ROUTES.PLAN} element={<PlanDetailsPage />} />
+            <Route path={ROUTES.PROFILE} element={<ProfilePage />} />
             <Route path={ROUTES.COMPARE} element={<ComparePage />} />
             <Route path="*" element={<Navigate to={ROUTES.HOME} replace />} />
           </Routes>

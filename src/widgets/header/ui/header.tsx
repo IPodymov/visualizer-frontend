@@ -1,32 +1,66 @@
-import {NavLink} from 'react-router-dom'
-import {useAuth} from '../../../entities/session'
-import {ROUTES} from '../../../shared/lib/routes'
-import './header.css'
+import { useState, useRef, useEffect } from 'react';
+import { Link } from 'react-router-dom';
+import { useAuth } from '../../../entities/session';
+import { ROUTES } from '../../../shared/lib/routes';
+import './header.css';
 
 export const Header = () => {
-    const {user, isAuthenticated, signOut} = useAuth()
+  const { user, isAuthenticated, signOut } = useAuth();
+  const [dropdownOpen, setDropdownOpen] = useState(false);
+  const dropdownRef = useRef<HTMLDivElement>(null);
 
-    return (
-        <header className="header">
-            <NavLink to={ROUTES.HOME} className="brand-link">
-                Visualizer
-            </NavLink>
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+        setDropdownOpen(false);
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
 
-            <nav className="nav-links">
-                <NavLink to={ROUTES.HOME}>Главная</NavLink>
+  return (
+    <header className="header">
+      <Link to={ROUTES.HOME} className="brand-link">
+        Academic Visualizer
+      </Link>
 
-                {!isAuthenticated && <NavLink to={ROUTES.LOGIN}>Вход</NavLink>}
-                {!isAuthenticated && <NavLink to={ROUTES.REGISTER}>Регистрация</NavLink>}
+      <nav className="nav-links">
+        {isAuthenticated ? (
+          <div className="user-dropdown-container" ref={dropdownRef}>
+            <button
+              className="user-dropdown-trigger"
+              onClick={() => setDropdownOpen(!dropdownOpen)}>
+              <div className="user-avatar-placeholder">{user?.email?.[0].toUpperCase() || 'U'}</div>
+              <span className="user-name">{user?.full_name || user?.email}</span>
+              <span className="dropdown-arrow">▼</span>
+            </button>
 
-                {isAuthenticated && (
-                    <button type="button" className="ghost-button" onClick={() => void signOut()}>
-                        Выйти
-                    </button>
-                )}
-            </nav>
-
-            <div className="user-chip">{user ? user.email : 'Гость'}</div>
-        </header>
-    )
-}
-
+            {dropdownOpen && (
+              <div className="dropdown-menu">
+                <Link
+                  to={ROUTES.PROFILE}
+                  className="dropdown-item"
+                  onClick={() => setDropdownOpen(false)}>
+                  Профиль
+                </Link>
+                <button
+                  className="dropdown-item logout-btn"
+                  onClick={() => {
+                    setDropdownOpen(false);
+                    void signOut();
+                  }}>
+                  Выйти
+                </button>
+              </div>
+            )}
+          </div>
+        ) : (
+          <Link to={ROUTES.LOGIN} className="auth-button">
+            Войти
+          </Link>
+        )}
+      </nav>
+    </header>
+  );
+};

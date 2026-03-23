@@ -122,3 +122,12 @@
     color: white;
     border-color: var(--accent);
 }
+
+.plan-card__actions {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  z-index: 2;
+  display: flex;
+  gap: 8px;
+}

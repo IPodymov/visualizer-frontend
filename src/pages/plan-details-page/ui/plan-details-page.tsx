@@ -1,5 +1,8 @@
 import { useParams, Link } from 'react-router-dom';
+import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import { useGetPlanByIdQuery, useGetSpecialtyByIdQuery } from '../../../entities/plan';
+import { addToHistory, ToggleFavoriteButton } from '../../../features/user-preferences';
 import { PlanMap } from '../../../widgets/plan-map';
 import { PlanTable } from '../../../widgets/plan-table';
 import { ComputingLandscape } from '../../../widgets/computing-landscape';
@@ -9,6 +12,7 @@ import './plan-details-page.css';
 export const PlanDetailsPage = () => {
   const { id } = useParams<{ id: string }>();
   const planId = Number(id);
+  const dispatch = useDispatch();
 
   const {
     data: plan,
@@ -21,6 +25,12 @@ export const PlanDetailsPage = () => {
   const { data: specialty } = useGetSpecialtyByIdQuery(plan?.specialty_id ?? -1, {
     skip: !plan,
   });
+
+  useEffect(() => {
+    if (plan && specialty) {
+      dispatch(addToHistory({ ...plan, specialtyName: `${specialty.code} ${specialty.name}` }));
+    }
+  }, [plan, specialty, dispatch]);
 
   if (isLoading) {
     return <div className="page-state">Загрузка плана...</div>;
@@ -43,11 +53,14 @@ export const PlanDetailsPage = () => {
         <Link to={ROUTES.HOME} className="back-link">
           ← К списку планов
         </Link>
-        <h1>
-          {specialty
-            ? `${specialty.code} ${specialty.name}`
-            : `Специальность #${plan.specialty_id}`}
-        </h1>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+            <h1>
+            {specialty
+                ? `${specialty.code} ${specialty.name}`
+                : `Специальность #${plan.specialty_id}`}
+            </h1>
+            <ToggleFavoriteButton plan={plan} specialtyName={specialty?.name} />
+        </div>
 
         <div className="header-meta">
           <div className="meta-item">

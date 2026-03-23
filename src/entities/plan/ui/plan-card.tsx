@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom'
+import { type ReactNode } from 'react'
 import { ROUTES } from '../../../shared/lib/routes'
 import type {AcademicPlan} from '../model/types'
 import './plan-card.css'
@@ -6,9 +7,10 @@ import './plan-card.css'
 type PlanCardProps = {
     plan: AcademicPlan
     specialtyName?: string
+    actionSlot?: ReactNode
 }
 
-export const PlanCard = ({plan, specialtyName}: PlanCardProps) => {
+export const PlanCard = ({plan, specialtyName, actionSlot}: PlanCardProps) => {
     const totalHours = plan.items.reduce((sum, item) => sum + item.total_hours, 0)
     const disciplinesCount = plan.items.length
     const semesters = new Set(plan.items.map((i) => i.semester)).size
@@ -21,6 +23,7 @@ export const PlanCard = ({plan, specialtyName}: PlanCardProps) => {
         <article className="plan-card">
             <div className="plan-card__image-container" style={{ background: gradient }}>
                 <span className="plan-card__badge-year">{plan.admission_year}</span>
+                {actionSlot && <div className="plan-card__actions">{actionSlot}</div>}
                 <div className="plan-card__image-overlay"></div>
             </div>
 

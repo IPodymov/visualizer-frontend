@@ -1,63 +1,63 @@
-import { useEffect, useState, type PropsWithChildren } from 'react'
-import { ApiError } from '../../../shared/api/http'
-import { sessionApi } from '../api/session-api'
-import { tokenStorage } from '../lib/token-storage'
-import { AuthContext, type AuthContextValue } from './context'
-import type { LoginPayload, RegisterPayload, User } from './types'
+import { useEffect, useState, type PropsWithChildren } from 'react';
+import { ApiError } from '../../../shared/api/http';
+import { sessionApi } from '../api/session-api';
+import { tokenStorage } from '../../../shared/lib/token-storage';
+import { AuthContext, type AuthContextValue } from './context';
+import type { LoginPayload, RegisterPayload, User } from './types';
 
 export const AuthProvider = ({ children }: PropsWithChildren) => {
-  const [user, setUser] = useState<User | null>(null)
-  const [isBootstrapping, setIsBootstrapping] = useState(true)
+  const [user, setUser] = useState<User | null>(null);
+  const [isBootstrapping, setIsBootstrapping] = useState(true);
 
   useEffect(() => {
     const bootstrap = async () => {
-      const token = tokenStorage.getToken()
+      const token = tokenStorage.getToken();
 
       if (!token) {
-        setIsBootstrapping(false)
-        return
+        setIsBootstrapping(false);
+        return;
       }
 
       try {
-        const me = await sessionApi.getMe(token)
-        setUser(me)
+        const me = await sessionApi.getMe(token);
+        setUser(me);
       } catch {
-        tokenStorage.clearToken()
+        tokenStorage.clearToken();
       } finally {
-        setIsBootstrapping(false)
+        setIsBootstrapping(false);
       }
-    }
+    };
 
-    void bootstrap()
-  }, [])
+    void bootstrap();
+  }, []);
 
   const signIn = async (payload: LoginPayload) => {
-    const tokenResponse = await sessionApi.login(payload)
-    tokenStorage.setToken(tokenResponse.access_token)
+    const tokenResponse = await sessionApi.login(payload);
+    tokenStorage.setToken(tokenResponse.access_token);
 
-    const me = await sessionApi.getMe(tokenResponse.access_token)
-    setUser(me)
-  }
+    const me = await sessionApi.getMe(tokenResponse.access_token);
+    setUser(me);
+  };
 
   const signUp = async (payload: RegisterPayload) => {
-    await sessionApi.register(payload)
-    await signIn({ email: payload.email, password: payload.password })
-  }
+    await sessionApi.register(payload);
+    await signIn({ email: payload.email, password: payload.password });
+  };
 
   const signOut = async () => {
-    const token = tokenStorage.getToken()
+    const token = tokenStorage.getToken();
 
     try {
-      await sessionApi.logout(token)
+      await sessionApi.logout(token ?? null);
     } catch (error) {
       if (!(error instanceof ApiError)) {
-        throw error
+        throw error;
       }
     } finally {
-      tokenStorage.clearToken()
-      setUser(null)
+      tokenStorage.clearToken();
+      setUser(null);
     }
-  }
+  };
 
   const value: AuthContextValue = {
     user,
@@ -66,9 +66,7 @@ export const AuthProvider = ({ children }: PropsWithChildren) => {
     signIn,
     signUp,
     signOut,
-  }
+  };
 
-  return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>
-}
-
-
+  return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
+};

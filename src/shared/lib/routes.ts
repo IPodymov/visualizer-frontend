@@ -4,5 +4,6 @@ export const ROUTES = {
   REGISTER: '/register',
   COMPARE: '/compare',
   PLAN: '/plans/:id',
+  PROFILE: '/profile',
 } as const
 

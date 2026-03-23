@@ -2,6 +2,7 @@ import { useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useAuth } from '../../../entities/session';
 import { PlanCard, useGetPlansQuery, useGetSpecialtiesQuery } from '../../../entities/plan';
+import { ToggleFavoriteButton } from '../../../features/user-preferences';
 import { ROUTES } from '../../../shared/lib/routes';
 import './home-page.css';
 
@@ -118,19 +119,19 @@ export const HomePage = () => {
             {filteredPlans.slice(0, visibleCount).map((plan) => {
               const isSelected = selectedPlanIds.has(plan.id);
               return (
-                <div key={plan.id} className={`plan-card-compare-wrapper ${isSelected ? 'selected' : ''}`} onClick={() => {
-                    // Prevent navigation if clicking the checkbox/overlay area
-                    // But here we wrap loosely
-                }}>
-                  <label className="compare-checkbox-label">
-                      <input 
-                          type="checkbox" 
-                          checked={isSelected}
-                          onChange={() => togglePlanSelection(plan.id)}
-                      />
-                      <span>Сравнить</span>
-                  </label>
-                  <PlanCard plan={plan} specialtyName={specialtyMap.get(plan.specialty_id)} />
+                <div key={plan.id} className={`plan-card-compare-wrapper ${isSelected ? 'selected' : ''}`}>
+                  <div className="plan-compare-checkbox" title="Добавить к сравнению">
+                        <input 
+                            type="checkbox" 
+                            checked={isSelected}
+                            onChange={() => togglePlanSelection(plan.id)}
+                        />
+                  </div>
+                  <PlanCard 
+                    plan={plan} 
+                    specialtyName={specialtyMap.get(plan.specialty_id)} 
+                    actionSlot={<ToggleFavoriteButton plan={plan} specialtyName={specialtyMap.get(plan.specialty_id)} />}
+                  />
                 </div>
             )})}
           </div>
