@@ -1,6 +1,5 @@
 import { useState, type FormEvent } from 'react'
 import './auth-form.css'
-import { Link } from 'react-router-dom'
 
 type AuthFormValues = {
   email: string

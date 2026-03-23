@@ -1,13 +1,13 @@
-import { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
-import { useAuth } from '../../../../entities/session'
-import { ROUTES } from '../../../../shared/lib/routes'
-import { AuthForm } from '../../ui/auth-form'
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../../../../entities/session';
+import { ROUTES } from '../../../../shared/lib/routes';
+import { AuthForm } from '../../ui/auth-form';
 
 export const RegisterForm = () => {
-  const navigate = useNavigate()
-  const { signUp } = useAuth()
-  const [isLoading, setIsLoading] = useState(false)
+  const navigate = useNavigate();
+  const { signUp } = useAuth();
+  const [isLoading, setIsLoading] = useState(false);
 
   return (
     <AuthForm
@@ -16,19 +16,21 @@ export const RegisterForm = () => {
       submitLabel="Создать аккаунт"
       isLoading={isLoading}
       onSubmit={async ({ email, password, fullName }) => {
-        setIsLoading(true)
+        setIsLoading(true);
         try {
           await signUp({
             email,
             password,
             fullName: fullName ?? '',
-          })
-          navigate(ROUTES.HOME)
+          });
+          navigate(ROUTES.HOME);
+        } catch (error) {
+          console.error('Registration error:', error);
+          throw error;
         } finally {
-          setIsLoading(false)
+          setIsLoading(false);
         }
       }}
     />
-  )
-}
-
+  );
+};
