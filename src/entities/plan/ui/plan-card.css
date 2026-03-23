@@ -17,8 +17,8 @@
   border-color: var(--accent);
 }
 
-.plan-card55%ge-container {
-  height: 180px;
+.plan-card__image-container {
+  height: 55%;
   width: 100%;
   position: relative;
   display: flex;
