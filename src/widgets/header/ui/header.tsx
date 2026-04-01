@@ -1,8 +1,8 @@
 import { useState, useRef, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { useAuth } from '../../../entities/session';
-import { ROUTES } from '../../../shared/lib/routes';
-import './header.css';
+import { useAuth } from '@/entities/session';
+import { ROUTES } from '@/shared/lib/routes';
+import '@/widgets/header/ui/header.css';
 
 export const Header = () => {
   const { user, isAuthenticated, signOut } = useAuth();

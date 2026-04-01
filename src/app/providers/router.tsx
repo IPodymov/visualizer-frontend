@@ -1,14 +1,14 @@
 import { type ReactElement } from 'react';
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
-import { useAuth } from '../../entities/session';
-import { LoginPage } from '../../pages/login-page';
-import { HomePage } from '../../pages/home-page';
-import { RegisterPage } from '../../pages/register-page';
-import { PlanDetailsPage } from '../../pages/plan-details-page/ui/plan-details-page';
-import { ProfilePage } from '../../pages/profile-page';
-import { ComparePage } from '../../pages/compare-page';
-import { ROUTES } from '../../shared/lib/routes';
-import { Header } from '../../widgets/header';
+import { useAuth } from '@/entities/session';
+import { LoginPage } from '@/pages/login-page';
+import { HomePage } from '@/pages/home-page';
+import { RegisterPage } from '@/pages/register-page';
+import { PlanDetailsPage } from '@/pages/plan-details-page/ui/plan-details-page';
+import { ProfilePage } from '@/pages/profile-page';
+import { ComparePage } from '@/pages/compare-page';
+import { ROUTES } from '@/shared/lib/routes';
+import { Header } from '@/widgets/header';
 
 const GuestOnly = ({ children }: { children: ReactElement }) => {
   const { isAuthenticated, isBootstrapping } = useAuth();

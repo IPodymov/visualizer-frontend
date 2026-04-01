@@ -1,7 +1,7 @@
 import { Provider } from 'react-redux'
-import { AuthProvider } from '../entities/session'
-import { AppRouter } from './providers/router'
-import { store } from './store'
+import { AuthProvider } from '@/entities/session'
+import { AppRouter } from '@/app/providers/router'
+import { store } from '@/app/store'
 
 export const App = () => {
   return (

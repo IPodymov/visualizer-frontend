@@ -1,5 +1,5 @@
-import {http} from '../../../shared/api/http'
-import type {LoginPayload, RegisterPayload, TokenResponse, User} from '../model/types'
+import {http} from '@/shared/api/http'
+import type {LoginPayload, RegisterPayload, TokenResponse, User} from '@/entities/session/model/types'
 
 type RegisterRequest = {
     email: string

@@ -15,71 +15,80 @@
   justify-content: center;
 }
 
-.landscape-svg {
+.landscape-chart-surface {
   width: 100%;
   max-width: 800px;
-  height: auto;
+  min-height: 560px;
+  padding: 16px;
   font-family: var(--sans);
   background-color: #fff;
   border-radius: 4px;
+  border: 1px solid #E2E8F0;
 }
 
 .landscape-title {
-  font-size: 24px;
+  margin: 0 0 12px;
+  text-align: center;
+  font-size: 22px;
   font-weight: bold;
-  fill: #333;
+  color: #0F172A;
 }
 
-.axis-label {
-  font-size: 14px;
-  fill: #666;
-  font-weight: 500;
-}
-.axis-label-vert {
-  font-size: 14px;
-  fill: #666;
-  font-weight: 500;
-  writing-mode: tb; /* vertical text for left axis */
-  transform: rotate(-90deg);
-  transform-origin: 50 300; 
+.landscape-caption {
+  margin: 8px 0 0;
+  text-align: center;
+  color: #475569;
+  font-size: 13px;
 }
 
-.area-label {
-    font-size: 12px;
-    font-weight: 600;
-    fill: #555;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
+.landscape-tooltip {
+  max-width: 320px;
+  padding: 10px 12px;
+  border: 1px solid #CBD5E1;
+  border-radius: 8px;
+  background-color: rgba(255, 255, 255, 0.98);
+  box-shadow: 0 8px 18px rgba(15, 23, 42, 0.12);
 }
 
-.area-label-code {
-    font-size: 16px;
-    font-weight: 800;
-    fill: #333;
-    stroke: #fff;
-    stroke-width: 3px;
-    paint-order: stroke;
+.tooltip-title {
+  font-size: 13px;
+  font-weight: 700;
+  color: #0F172A;
+  margin-bottom: 4px;
 }
 
-.discipline-dot {
-    cursor: pointer;
-    transition: r 0.2s, fill 0.2s;
+.tooltip-count {
+  font-size: 12px;
+  color: #334155;
+  margin-bottom: 6px;
 }
 
-.discipline-dot:hover {
-    r: 6;
-    fill: #EF4444; /* red on hover */
+.tooltip-list {
+  margin: 0;
+  padding: 0 0 0 14px;
+  max-height: 146px;
+  overflow-y: auto;
+  color: #334155;
+  font-size: 12px;
+  line-height: 1.35;
 }
 
-.discipline-label {
-    font-size: 9px;
-    fill: #333;
-    pointer-events: none;
-    opacity: 0.7;
+.tooltip-empty {
+  color: #64748B;
+  font-size: 12px;
 }
 
-g:hover .discipline-label {
-    opacity: 1;
-    font-weight: bold;
-    font-size: 11px;
+@media (max-width: 900px) {
+  .landscape-chart-surface {
+    min-height: 500px;
+    padding: 10px;
+  }
+
+  .landscape-title {
+    font-size: 19px;
+  }
+
+  .landscape-tooltip {
+    max-width: 250px;
+  }
 }

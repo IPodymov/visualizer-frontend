@@ -1,6 +1,6 @@
 import { fetchBaseQuery } from '@reduxjs/toolkit/query/react'
-import { env } from '../config/env'
-import { tokenStorage } from '../lib/token-storage'
+import { env } from '@/shared/config/env'
+import { tokenStorage } from '@/shared/lib/token-storage'
 
 export const baseQuery = fetchBaseQuery({
   baseUrl: `${env.apiBaseUrl}${env.apiV1Prefix}`,

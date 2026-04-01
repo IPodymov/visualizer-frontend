@@ -1,9 +1,9 @@
 import { useEffect, useState, type PropsWithChildren } from 'react';
-import { ApiError } from '../../../shared/api/http';
-import { sessionApi } from '../api/session-api';
-import { tokenStorage } from '../../../shared/lib/token-storage';
-import { AuthContext, type AuthContextValue } from './context';
-import type { LoginPayload, RegisterPayload, User } from './types';
+import { ApiError } from '@/shared/api/http';
+import { sessionApi } from '@/entities/session/api/session-api';
+import { tokenStorage } from '@/shared/lib/token-storage';
+import { AuthContext, type AuthContextValue } from '@/entities/session/model/context';
+import type { LoginPayload, RegisterPayload, User } from '@/entities/session/model/types';
 
 export const AuthProvider = ({ children }: PropsWithChildren) => {
   const [user, setUser] = useState<User | null>(null);

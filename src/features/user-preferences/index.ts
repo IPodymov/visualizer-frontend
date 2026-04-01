@@ -7,7 +7,7 @@ import {
     selectFavorites,
     selectHistory,
     selectIsFavorite,
-} from './model/slice';
+} from '@/features/user-preferences/model/slice';
 
 export {
     userPreferencesSlice,
@@ -20,4 +20,4 @@ export {
     selectIsFavorite,
 };
 
-export { ToggleFavoriteButton } from './ui/toggle-favorite-button';
+export { ToggleFavoriteButton } from '@/features/user-preferences/ui/toggle-favorite-button';

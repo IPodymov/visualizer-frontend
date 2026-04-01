@@ -1,1 +1,1 @@
-export { PlanMap } from './ui/plan-map';
+export { PlanMap } from '@/widgets/plan-map/ui/plan-map';

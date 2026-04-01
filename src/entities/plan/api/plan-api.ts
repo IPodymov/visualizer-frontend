@@ -1,7 +1,7 @@
 import { createApi } from '@reduxjs/toolkit/query/react'
-import { baseQuery } from '../../../shared/api/base-query'
-import type { AcademicPlan } from '../model/types'
-import type { Faculty, Specialty } from '../model/faculty-types'
+import { baseQuery } from '@/shared/api/base-query'
+import type { AcademicPlan } from '@/entities/plan/model/types'
+import type { Faculty, Specialty } from '@/entities/plan/model/faculty-types'
 
 export const planApi = createApi({
   reducerPath: 'planApi',

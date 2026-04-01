@@ -5,10 +5,10 @@ import {
   selectHistory,
   clearHistory,
   ToggleFavoriteButton,
-} from '../../../features/user-preferences';
-import { PlanCard } from '../../../entities/plan';
-import { useAuth } from '../../../entities/session';
-import './profile-page.css';
+} from '@/features/user-preferences';
+import { PlanCard } from '@/entities/plan';
+import { useAuth } from '@/entities/session';
+import '@/pages/profile-page/ui/profile-page.css';
 import { useDispatch } from 'react-redux';
 
 export const ProfilePage = () => {

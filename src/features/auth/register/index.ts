@@ -1,2 +1,2 @@
-export { RegisterForm } from './ui/register-form'
+export { RegisterForm } from '@/features/auth/register/ui/register-form'
 

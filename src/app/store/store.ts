@@ -1,6 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit'
-import { planApi } from '../../entities/plan'
-import { userPreferencesSlice } from '../../features/user-preferences/model/slice'
+import { planApi } from '@/entities/plan'
+import { userPreferencesSlice } from '@/features/user-preferences/model/slice'
 
 export const store = configureStore({
   reducer: {

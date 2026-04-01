@@ -1,2 +1,2 @@
-export { RegisterPage } from './ui/register-page'
+export { RegisterPage } from '@/pages/register-page/ui/register-page'
 

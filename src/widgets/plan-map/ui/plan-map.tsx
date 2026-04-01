@@ -1,8 +1,8 @@
-import React, { useMemo, useRef } from 'react';
-import html2canvas from 'html2canvas';
-import jsPDF from 'jspdf';
-import type { AcademicPlan, PlanItem } from '../../../entities/plan/model/types';
-import './plan-map.css';
+import React, { useMemo, useRef } from "react";
+import html2canvas from "html2canvas";
+import jsPDF from "jspdf";
+import type { AcademicPlan, PlanItem } from "@/entities/plan/model/types";
+import "@/widgets/plan-map/ui/plan-map.css";
 
 interface PlanMapProps {
   plan: AcademicPlan;
@@ -17,7 +17,8 @@ const ZE_COL_WIDTH = 50; // Width for ZE column
 // Helper to determine color based on discipline properties
 const getColorClass = (item: PlanItem, index: number): string => {
   // Ideally use domain_type or layer_type
-  const type = item.discipline.domain_type || item.discipline.layer_type || 'default';
+  const type =
+    item.discipline.domain_type || item.discipline.layer_type || "default";
   if (!type) return `color-scheme-${(index % 6) + 1}`;
 
   // Simple hash for consistent coloring
@@ -56,8 +57,10 @@ export const PlanMap: React.FC<PlanMapProps> = ({ plan }) => {
 
     // Sort items within each semester by name for consistent layout
     Object.keys(itemsBySemester).forEach((semKey) => {
-       const sem = parseInt(semKey);
-       itemsBySemester[sem].sort((a, b) => a.discipline.name.localeCompare(b.discipline.name));
+      const sem = parseInt(semKey);
+      itemsBySemester[sem].sort((a, b) =>
+        a.discipline.name.localeCompare(b.discipline.name),
+      );
     });
 
     const pixelPerfectItems: Array<{
@@ -98,29 +101,29 @@ export const PlanMap: React.FC<PlanMapProps> = ({ plan }) => {
 
     try {
       const element = mapRef.current;
-      const canvas = await html2canvas(element, { 
+      const canvas = await html2canvas(element, {
         scale: 2,
-        useCORS: true, 
+        useCORS: true,
         logging: false,
         width: element.scrollWidth, // Ensure we capture full width
         height: element.scrollHeight, // Ensure we capture full height
         windowWidth: element.scrollWidth,
-        windowHeight: element.scrollHeight
+        windowHeight: element.scrollHeight,
       });
 
-      const imgData = canvas.toDataURL('image/png');
+      const imgData = canvas.toDataURL("image/png");
 
       const pdf = new jsPDF({
-        orientation: 'landscape',
-        unit: 'px',
+        orientation: "landscape",
+        unit: "px",
         format: [canvas.width, canvas.height],
       });
 
-      pdf.addImage(imgData, 'PNG', 0, 0, canvas.width, canvas.height);
+      pdf.addImage(imgData, "PNG", 0, 0, canvas.width, canvas.height);
       pdf.save(`academic-plan-${plan.id}.pdf`);
     } catch (err) {
-      console.error('Failed to generate PDF', err);
-      alert('Не удалось создать PDF. Попробуйте снова.');
+      console.error("Failed to generate PDF", err);
+      alert("Не удалось создать PDF. Попробуйте снова.");
     }
   };
 
@@ -128,9 +131,13 @@ export const PlanMap: React.FC<PlanMapProps> = ({ plan }) => {
   const zeRows = [];
   for (let r = 2; r < maxRows; r++) {
     zeRows.push(
-      <div key={`ze-${r}`} className="ze-header" style={{ gridRow: r, gridColumn: 1 }}>
+      <div
+        key={`ze-${r}`}
+        className="ze-header"
+        style={{ gridRow: r, gridColumn: 1 }}
+      >
         {r - 1}
-      </div>
+      </div>,
     );
   }
 
@@ -138,9 +145,13 @@ export const PlanMap: React.FC<PlanMapProps> = ({ plan }) => {
   const semesterHeaders = [];
   for (let s = 1; s <= semesterCount; s++) {
     semesterHeaders.push(
-      <div key={`sem-${s}`} className="semester-header" style={{ gridColumn: s + 1 }}>
+      <div
+        key={`sem-${s}`}
+        className="semester-header"
+        style={{ gridColumn: s + 1 }}
+      >
         {s} сем
-      </div>
+      </div>,
     );
   }
 
@@ -151,42 +162,43 @@ export const PlanMap: React.FC<PlanMapProps> = ({ plan }) => {
         <span className="summary-arrow">▼</span>
       </summary>
       <div className="plan-map-wrapper">
-          
-          <div className="plan-map-controls">
-            <button onClick={handleDownloadPdf} className="pdf-download-btn">
-              Скачать PDF
-            </button>
-          </div>
+        <div className="plan-map-controls">
+          <button onClick={handleDownloadPdf} className="pdf-download-btn">
+            Скачать PDF
+          </button>
+        </div>
 
-          <div className="plan-map-container" ref={mapRef}>
-            <div
-              className="plan-grid"
-              style={{
-                gridTemplateColumns: `${ZE_COL_WIDTH}px repeat(${semesterCount}, ${COL_WIDTH}px)`,
-                gridTemplateRows: `${HEADER_HEIGHT}px repeat(${maxRows - 2}, ${ROW_HEIGHT}px)`,
-                width: `${ZE_COL_WIDTH + semesterCount * COL_WIDTH}px` // Explicit width to prevent jumping
-              }}>
-              {/* Headers */}
-              <div className="ze-header" style={{ gridRow: 1, gridColumn: 1 }}>
-                Z.E.
-              </div>
-              {semesterHeaders}
-
-              {/* Left Axis: Z.E. Numbers */}
-              {zeRows}
-
-              {/* Content Items */}
-              {alignedItems.map((gridItem) => (
-                <div
-                  key={`item-${gridItem.item.id}`}
-                  className={`plan-item ${gridItem.colorClass}`}
-                  style={gridItem.style}
-                  title={`${gridItem.item.discipline.name} (${gridItem.item.total_hours}ч)`}>
-                  {gridItem.item.discipline.name}
-                </div>
-              ))}
+        <div className="plan-map-container" ref={mapRef}>
+          <div
+            className="plan-grid"
+            style={{
+              gridTemplateColumns: `${ZE_COL_WIDTH}px repeat(${semesterCount}, ${COL_WIDTH}px)`,
+              gridTemplateRows: `${HEADER_HEIGHT}px repeat(${maxRows - 2}, ${ROW_HEIGHT}px)`,
+              width: `${ZE_COL_WIDTH + semesterCount * COL_WIDTH}px`, // Explicit width to prevent jumping
+            }}
+          >
+            {/* Headers */}
+            <div className="ze-header" style={{ gridRow: 1, gridColumn: 1 }}>
+              Z.E.
             </div>
+            {semesterHeaders}
+
+            {/* Left Axis: Z.E. Numbers */}
+            {zeRows}
+
+            {/* Content Items */}
+            {alignedItems.map((gridItem) => (
+              <div
+                key={`item-${gridItem.item.id}`}
+                className={`plan-item ${gridItem.colorClass}`}
+                style={gridItem.style}
+                title={`${gridItem.item.discipline.name} (${gridItem.item.total_hours}ч)`}
+              >
+                {gridItem.item.discipline.name}
+              </div>
+            ))}
           </div>
+        </div>
       </div>
     </details>
   );

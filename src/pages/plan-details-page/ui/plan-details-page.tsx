@@ -1,13 +1,20 @@
-import { useParams, Link } from 'react-router-dom';
-import { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
-import { useGetPlanByIdQuery, useGetSpecialtyByIdQuery } from '../../../entities/plan';
-import { addToHistory, ToggleFavoriteButton } from '../../../features/user-preferences';
-import { PlanMap } from '../../../widgets/plan-map';
-import { PlanTable } from '../../../widgets/plan-table';
-import { ComputingLandscape } from '../../../widgets/computing-landscape';
-import { ROUTES } from '../../../shared/lib/routes';
-import './plan-details-page.css';
+import { useParams, Link } from "react-router-dom";
+import { useEffect, lazy, Suspense } from "react";
+import { useDispatch } from "react-redux";
+import { useGetPlanByIdQuery, useGetSpecialtyByIdQuery } from "@/entities/plan";
+import {
+  addToHistory,
+  ToggleFavoriteButton,
+} from "@/features/user-preferences";
+import { PlanMap } from "@/widgets/plan-map";
+import { PlanTable } from "@/widgets/plan-table";
+import { ROUTES } from "@/shared/lib/routes";
+import "@/pages/plan-details-page/ui/plan-details-page.css";
+
+const ComputingLandscape = lazy(async () => {
+  const mod = await import("@/widgets/computing-landscape");
+  return { default: mod.ComputingLandscape };
+});
 
 export const PlanDetailsPage = () => {
   const { id } = useParams<{ id: string }>();
@@ -22,13 +29,21 @@ export const PlanDetailsPage = () => {
     skip: isNaN(planId),
   });
 
-  const { data: specialty } = useGetSpecialtyByIdQuery(plan?.specialty_id ?? -1, {
-    skip: !plan,
-  });
+  const { data: specialty } = useGetSpecialtyByIdQuery(
+    plan?.specialty_id ?? -1,
+    {
+      skip: !plan,
+    },
+  );
 
   useEffect(() => {
     if (plan && specialty) {
-      dispatch(addToHistory({ ...plan, specialtyName: `${specialty.code} ${specialty.name}` }));
+      dispatch(
+        addToHistory({
+          ...plan,
+          specialtyName: `${specialty.code} ${specialty.name}`,
+        }),
+      );
     }
   }, [plan, specialty, dispatch]);
 
@@ -53,13 +68,13 @@ export const PlanDetailsPage = () => {
         <Link to={ROUTES.HOME} className="back-link">
           ← К списку планов
         </Link>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-            <h1>
+        <div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
+          <h1>
             {specialty
-                ? `${specialty.code} ${specialty.name}`
-                : `Специальность #${plan.specialty_id}`}
-            </h1>
-            <ToggleFavoriteButton plan={plan} specialtyName={specialty?.name} />
+              ? `${specialty.code} ${specialty.name}`
+              : `Специальность #${plan.specialty_id}`}
+          </h1>
+          <ToggleFavoriteButton plan={plan} specialtyName={specialty?.name} />
         </div>
 
         <div className="header-meta">
@@ -79,8 +94,12 @@ export const PlanDetailsPage = () => {
       </div>
 
       <div className="plan-visualization">
+        <Suspense
+          fallback={<div className="page-state">Загрузка графика...</div>}
+        >
+          <ComputingLandscape plan={plan} />
+        </Suspense>
         <PlanMap plan={plan} />
-        <ComputingLandscape plan={plan} />
         <PlanTable plan={plan} />
       </div>
     </section>

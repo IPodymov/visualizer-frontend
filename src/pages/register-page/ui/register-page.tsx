@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom'
-import { RegisterForm } from '../../../features/auth/register'
-import { ROUTES } from '../../../shared/lib/routes'
-import './register-page.css'
+import { RegisterForm } from '@/features/auth/register'
+import { ROUTES } from '@/shared/lib/routes'
+import '@/pages/register-page/ui/register-page.css'
 
 export const RegisterPage = () => {
   return (

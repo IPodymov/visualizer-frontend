@@ -1,4 +1,4 @@
-import type { AcademicPlan } from './types'
+import type { AcademicPlan } from '@/entities/plan/model/types'
 
 export type Specialty = {
   id: number

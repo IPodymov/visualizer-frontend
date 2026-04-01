@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom'
-import { LoginForm } from '../../../features/auth/login'
-import { ROUTES } from '../../../shared/lib/routes'
-import './login-page.css'
+import { LoginForm } from '@/features/auth/login'
+import { ROUTES } from '@/shared/lib/routes'
+import '@/pages/login-page/ui/login-page.css'
 
 export const LoginPage = () => {
   return (

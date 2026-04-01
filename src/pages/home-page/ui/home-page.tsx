@@ -1,10 +1,10 @@
 import { useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { useAuth } from '../../../entities/session';
-import { PlanCard, useGetPlansQuery, useGetSpecialtiesQuery } from '../../../entities/plan';
-import { ToggleFavoriteButton } from '../../../features/user-preferences';
-import { ROUTES } from '../../../shared/lib/routes';
-import './home-page.css';
+import { useAuth } from '@/entities/session';
+import { PlanCard, useGetPlansQuery, useGetSpecialtiesQuery } from '@/entities/plan';
+import { ToggleFavoriteButton } from '@/features/user-preferences';
+import { ROUTES } from '@/shared/lib/routes';
+import '@/pages/home-page/ui/home-page.css';
 
 export const HomePage = () => {
   const { user, isAuthenticated } = useAuth();

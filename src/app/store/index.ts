@@ -1,3 +1,3 @@
-export { store } from './store'
-export type { RootState, AppDispatch } from './store'
+export { store } from '@/app/store/store'
+export type { RootState, AppDispatch } from '@/app/store/store'
 

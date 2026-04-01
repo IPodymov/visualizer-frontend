@@ -1,5 +1,5 @@
 import { createContext } from 'react'
-import type { LoginPayload, RegisterPayload, User } from './types'
+import type { LoginPayload, RegisterPayload, User } from '@/entities/session/model/types'
 
 export type AuthContextValue = {
   user: User | null

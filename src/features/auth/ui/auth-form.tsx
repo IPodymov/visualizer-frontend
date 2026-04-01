@@ -1,5 +1,5 @@
 import { useState, type FormEvent } from 'react'
-import './auth-form.css'
+import '@/features/auth/ui/auth-form.css'
 
 type AuthFormValues = {
   email: string

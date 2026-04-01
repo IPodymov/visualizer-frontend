@@ -1,4 +1,4 @@
-export { AuthProvider } from './model/auth-context'
-export { useAuth } from './model/use-auth'
-export type { User } from './model/types'
+export { AuthProvider } from '@/entities/session/model/auth-context'
+export { useAuth } from '@/entities/session/model/use-auth'
+export type { User } from '@/entities/session/model/types'
 

@@ -1,1 +1,1 @@
-export { PlanTable } from './ui/plan-table';
+export { PlanTable } from '@/widgets/plan-table/ui/plan-table';

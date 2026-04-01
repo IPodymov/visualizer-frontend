@@ -1,1 +1,1 @@
-export * from './ui/plan-details-page'
+export * from '@/pages/plan-details-page/ui/plan-details-page'

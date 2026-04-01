@@ -1,5 +1,5 @@
 import { createSlice, type PayloadAction } from '@reduxjs/toolkit'
-import type { AcademicPlan } from '../../../entities/plan/model/types'
+import type { AcademicPlan } from '@/entities/plan/model/types'
 
 // We store the full plan object + specialty name for offline/fast access
 export interface FavoritePlan extends AcademicPlan {

@@ -14,6 +14,7 @@
   grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
   gap: 24px;
   align-items: start;
+  margin-bottom: 24px;
 }
 
 .plan-column {
@@ -27,8 +28,8 @@
 }
 
 .plan-column:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 6px rgba(0,0,0,0.05);
 }
 
 .column-header {
@@ -44,30 +45,32 @@
 }
 
 .plan-meta {
-    display: flex;
-    justify-content: center;
-    gap: 16px;
-    font-size: 0.85rem;
-    color: #64748b;
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  font-size: 0.85rem;
+  color: #64748b;
 }
 
-/* Override landscape wrapper within comparison to fit better */
-.landscape-wrapper-compare .landscape-wrapper {
-    margin-top: 0;
-    box-shadow: none;
-    border: none;
+.compare-note {
+  margin: 0 0 16px;
+  color: #64748b;
+  font-size: 0.92rem;
 }
 
-.landscape-wrapper-compare details > summary {
-    /* Hide summary in comparison mode if we just want the chart? 
-       Actually user might want to toggle. Let's keep it but maybe styled smaller. 
-    */
-    padding: 8px;
-    font-size: 0.9rem;
+.compare-chart-card {
+  background-color: #fff;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 18px 20px 12px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
 }
 
-.landscape-wrapper-compare .landscape-container {
-    padding: 0;
+.compare-chart-card h2 {
+  margin: 0 0 12px;
+  text-align: center;
+  color: #1e293b;
+  font-size: 1.1rem;
 }
 
 .back-btn {
@@ -86,6 +89,20 @@
 }
 
 .compare-empty {
-    text-align: center;
-    padding: 60px;
+  text-align: center;
+  padding: 60px;
+}
+
+@media (max-width: 900px) {
+  .compare-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .plan-meta {
+    flex-wrap: wrap;
+  }
+
+  .compare-chart-card {
+    padding: 14px 8px 10px;
+  }
 }

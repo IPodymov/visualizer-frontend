@@ -1,6 +1,6 @@
 import React, { useMemo } from 'react';
-import type { AcademicPlan } from '../../../entities/plan/model/types';
-import './plan-table.css';
+import type { AcademicPlan } from '@/entities/plan/model/types';
+import '@/widgets/plan-table/ui/plan-table.css';
 
 interface PlanTableProps {
     plan: AcademicPlan;

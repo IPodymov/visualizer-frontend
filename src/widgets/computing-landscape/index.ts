@@ -1,1 +1,1 @@
-export { ComputingLandscape } from './ui/computing-landscape';
+export { ComputingLandscape } from '@/widgets/computing-landscape/ui/computing-landscape';

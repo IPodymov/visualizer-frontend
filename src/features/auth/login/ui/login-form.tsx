@@ -1,8 +1,8 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { useAuth } from '../../../../entities/session'
-import { ROUTES } from '../../../../shared/lib/routes'
-import { AuthForm } from '../../ui/auth-form'
+import { useAuth } from '@/entities/session'
+import { ROUTES } from '@/shared/lib/routes'
+import { AuthForm } from '@/features/auth/ui/auth-form'
 
 export const LoginForm = () => {
   const navigate = useNavigate()
