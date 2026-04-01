@@ -6,20 +6,37 @@
 }
 
 .search-input {
-  padding: 8px;
+  padding: 10px 16px;
   flex: 1;
   min-width: 200px;
   font-size: 1rem;
-  border: 1px solid #ccc;
-  border-radius: 4px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background-color: var(--bg-surface);
+  color: var(--text-h);
+  box-shadow: var(--shadow-sm);
+  transition: all 0.2s;
+}
+.search-input:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px var(--accent-bg);
 }
 
 .year-select {
-  padding: 8px;
+  padding: 10px 16px;
   font-size: 1rem;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  background-color: white;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background-color: var(--bg-surface);
+  color: var(--text-h);
+  box-shadow: var(--shadow-sm);
+  transition: all 0.2s;
+}
+.year-select:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px var(--accent-bg);
 }
 
 
@@ -41,19 +58,19 @@
     top: 12px;
     left: 12px;
     z-index: 10;
-    background: rgba(255, 255, 255, 0.95);
+    background: color-mix(in srgb, var(--bg-surface) 95%, transparent);
     padding: 6px 6px;
     border-radius: 8px;
     display: flex;
     align-items: center;
     justify-content: center;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-    border: 1px solid #e2e8f0;
+    box-shadow: var(--shadow-sm);
+    border: 1px solid var(--border);
     transition: background 0.1s;
 }
 
 .plan-compare-checkbox:hover {
-    background: #fff;
+    background: var(--bg-surface);
 }
 
 .compare-fab {
@@ -74,22 +91,22 @@
 }
 
 .fab-info {
-    background: #0f172a;
-    color: white;
+    background: var(--bg-inverse);
+    color: var(--text-inverse);
     padding: 8px 16px;
     border-radius: 20px;
     font-size: 0.85rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    box-shadow: var(--shadow-md);
     min-width: 140px;
 }
 
 .fab-info button {
     background: none;
     border: none;
-    color: #94a3b8;
+    color: var(--text);
     margin-left: 12px;
     cursor: pointer;
     font-size: 1rem;
@@ -97,11 +114,11 @@
     transition: color 0.2s;
 }
 
-.fab-info button:hover { color: #fff; }
+.fab-info button:hover { color: var(--text-inverse); }
 
 .fab-action {
     background: var(--accent);
-    color: white;
+    color: var(--text-inverse);
     padding: 12px 24px;
     border-radius: 12px;
     text-decoration: none;

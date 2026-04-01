@@ -141,16 +141,16 @@ export const UnifiedLandscapeChart = ({
   return (
     <ResponsiveContainer width="100%" height={560}>
       <RadarChart data={chartData} outerRadius="72%">
-        <PolarGrid stroke="#CBD5E1" />
+        <PolarGrid stroke="var(--border)" />
         <PolarAngleAxis
           dataKey="category"
-          tick={{ fill: "#334155", fontSize: 13 }}
+          tick={{ fill: "var(--text-h)", fontSize: 13 }}
         />
         <PolarRadiusAxis
           angle={90}
           domain={[0, maxValue]}
           tickCount={6}
-          tick={{ fill: "#64748B", fontSize: 11 }}
+          tick={{ fill: "var(--text)", fontSize: 11 }}
         />
         <Tooltip
           formatter={(value, name) => [

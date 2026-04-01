@@ -109,7 +109,7 @@ export const PlanTable: React.FC<PlanTableProps> = ({ plan }) => {
                                     {semesterHeaders.map((sem) => {
                                         const hours = row.items[sem];
                                         return (
-                                            <td key={sem} style={{ backgroundColor: hours ? '#f0f9ff' : '' }}>
+                                            <td key={sem} style={{ backgroundColor: hours ? 'var(--accent-bg)' : '' }}>
                                                 {hours || ''}
                                             </td>
                                         );

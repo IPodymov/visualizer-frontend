@@ -12,21 +12,21 @@
 .plan-table {
     width: 100%;
     border-collapse: collapse;
-    background-color: #fff;
+    background-color: var(--bg-surface);
     min-width: 800px;
     border: none; /* Let wrapper handle border */
 }
 
 .plan-table th,
 .plan-table td {
-    border: 1px solid #ddd;
+    border: 1px solid var(--border);
     padding: 8px;
     text-align: center;
 }
 /* ... rest ... */
 
 .plan-table th {
-    background-color: #f8f9fa;
+    background-color: var(--code-bg);
     font-weight: 600;
     vertical-align: middle;
 }
@@ -49,8 +49,8 @@
     cursor: pointer;
     font-weight: bold;
     padding: 10px;
-    background-color: #f0f2f5;
-    border-radius: 4px;
+    background-color: var(--bg);
+    border-radius: 8px;
     margin-bottom: 10px;
     user-select: none;
     list-style: none; /* Hide default triangle */
@@ -73,19 +73,19 @@ details[open] .plan-details-summary::after {
 
 .control-type {
     font-size: 11px;
-    color: #666;
+    color: var(--text);
     display: block;
 }
 
 .semester-headers th {
-    background-color: #e9ecef;
+    background-color: var(--border);
 }
 
 /* Zebra striping */
 .plan-table tbody tr:nth-child(even) {
-    background-color: #f8f9fa;
+    background-color: var(--code-bg);
 }
 
 .plan-table tbody tr:hover {
-    background-color: #f1f3f5;
+    background-color: var(--accent-bg);
 }

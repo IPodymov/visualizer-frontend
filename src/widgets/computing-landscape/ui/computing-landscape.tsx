@@ -185,16 +185,16 @@ export const ComputingLandscape: React.FC<ComputingLandscapeProps> = memo(
               <h3 className="landscape-title">Computing Landscape</h3>
               <ResponsiveContainer width="100%" height={520}>
                 <RadarChart data={chartData} outerRadius="72%">
-                  <PolarGrid stroke="#CBD5E1" />
+                  <PolarGrid stroke="var(--border)" />
                   <PolarAngleAxis
                     dataKey="label"
-                    tick={{ fill: "#334155", fontSize: 13 }}
+                    tick={{ fill: "var(--text-h)", fontSize: 13 }}
                   />
                   <PolarRadiusAxis
                     angle={90}
                     domain={[0, maxValue]}
                     tickCount={6}
-                    tick={{ fill: "#64748B", fontSize: 11 }}
+                    tick={{ fill: "var(--text)", fontSize: 11 }}
                   />
                   <Tooltip
                     content={
@@ -205,8 +205,8 @@ export const ComputingLandscape: React.FC<ComputingLandscapeProps> = memo(
                   <Radar
                     name="Дисциплины"
                     dataKey="value"
-                    stroke="#0EA5E9"
-                    fill="#38BDF8"
+                    stroke="var(--primary)"
+                    fill="var(--primary)"
                     fillOpacity={0.36}
                     strokeWidth={2}
                     isAnimationActive={false}

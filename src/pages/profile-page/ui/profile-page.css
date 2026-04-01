@@ -51,7 +51,7 @@
 .clear-history-btn {
     background: none;
     border: none;
-    color: var(--danger, #ff4d4f);
+    color: var(--danger);
     cursor: pointer;
     font-size: 0.9rem;
     text-decoration: underline;

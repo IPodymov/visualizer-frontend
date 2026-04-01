@@ -2,10 +2,10 @@
   max-width: 400px;
   margin: 40px auto;
   padding: 32px;
-  background-color: var(--card-bg);
+  background-color: var(--bg-surface);
   border: 1px solid var(--border);
-  border-radius: 16px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.02);
+  border-radius: 20px;
+  box-shadow: var(--shadow-md);
 }
 
 .auth-card h1 {
@@ -23,9 +23,9 @@
   display: flex;
   flex-direction: column;
   gap: 8px;
-  font-size: 0.9rem;
+  font-size: 0.95rem;
   font-weight: 500;
-  color: #475569;
+  color: var(--text);
 }
 
 .auth-form input {
@@ -34,24 +34,27 @@
 
 .auth-form button[type="submit"] {
   margin-top: 8px;
-  padding: 12px;
-  background-color: var(--accent);
-  color: white;
+  padding: 14px;
+  background-color: var(--primary);
+  color: var(--text-inverse);
   border: none;
-  border-radius: 8px;
+  border-radius: 12px;
+  font-size: 1rem;
   font-weight: 600;
   cursor: pointer;
-  transition: all 0.2s;
-  box-shadow: 0 4px 6px var(--accent-border);
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 4px 12px var(--accent-border);
 }
 
-.auth-form button[type="submit"]:hover {
-  transform: translateY(-1px);
-  filter: brightness(0.9);
+.auth-form button[type="submit"]:hover:not(:disabled) {
+  transform: translateY(-2px);
+  background-color: var(--primary-hover);
 }
 
 .auth-form button[type="submit"]:disabled {
-  background-color: #94A3B8;
+  background-color: var(--border);
+  color: var(--text);
+  box-shadow: none;
   cursor: not-allowed;
 }
 

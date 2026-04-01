@@ -4,11 +4,11 @@
 
 .page-header {
   margin-bottom: 40px;
-  background-color: var(--card-bg);
+  background-color: var(--bg-surface);
   border: 1px solid var(--border);
   border-radius: 12px;
   padding: 32px;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+  box-shadow: var(--shadow);
 }
 
 .back-link {
@@ -17,7 +17,7 @@
   margin-bottom: 20px;
   font-size: 0.9rem;
   font-weight: 500;
-  color: #64748B;
+  color: var(--text);
   text-decoration: none;
   transition: color 0.15s;
 }
@@ -51,7 +51,7 @@
   font-size: 0.75rem;
   text-transform: uppercase;
   letter-spacing: 0.05em;
-  color: #94A3B8;
+  color: var(--text);
   margin-bottom: 4px;
 }
 
@@ -96,7 +96,7 @@ details.plan-details[open] summary ~ * {
   align-items: center;
   justify-content: space-between;
   padding: 16px;
-  background-color: var(--card-bg);
+  background-color: var(--bg-surface);
   border: 1px solid var(--border);
   border-radius: 8px;
   cursor: pointer;
@@ -114,13 +114,13 @@ details.plan-details[open] .code-summary {
 }
 
 .code-summary:hover {
-  background-color: #F8FAFC;
+  background-color: var(--code-bg);
 }
 
 .summary-arrow {
   transition: transform 0.3s;
   font-size: 0.8em;
-  color: #64748B;
+  color: var(--text);
 }
 
 details.plan-details[open] .summary-arrow {
@@ -135,7 +135,7 @@ details.plan-details[open] .summary-arrow {
   border-top: none;
   border-bottom-left-radius: 8px;
   border-bottom-right-radius: 8px;
-  background-color: var(--card-bg);
+  background-color: var(--bg-surface);
 }
 
 /* Fix for table/map jumping width */
