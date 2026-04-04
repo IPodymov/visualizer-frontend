@@ -36,7 +36,7 @@
     ```
 
 3.  **Настройте переменные окружения**:
-    Создайте файл `.env` в корне проекта (можно скопировать из `.env.example`, если есть):
+    Создайте файл `.env` в корне проекта:
     ```env
     VITE_API_URL=https://visualizer-back-production.up.railway.app
     ```
@@ -70,11 +70,3 @@ src/
 
 *   [Архитектура проекта](docs/ARCHITECTURE.md)
 *   [Описание функциональности](docs/FEATURES.md)
-
-## 🔗 Backend API
-
-*   **Base URL**: `https://visualizer-back-production.up.railway.app`
-*   **API Version**: `/api/v1`
-
----
-Разработано в рамках проектной деятельности.
