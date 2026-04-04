@@ -4,7 +4,7 @@ import path from 'node:path'
 import fs from 'node:fs'
 
 // https://vite.dev/config/
-export default defineConfig(({ mode }) => {
+export default defineConfig(() => {
   // Насильно читаем только файл .env, игнорируя .env.local и остальные
   const envPath = path.resolve(__dirname, '.env')
   const env: Record<string, string> = {}
