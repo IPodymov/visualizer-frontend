@@ -1,12 +1,6 @@
 @import '../../index.css';
 
-/* Global Reset & Base Styles */
-:root {
-  font-family: var(--sans);
-  color: var(--text);
-  background-color: var(--bg);
-}
-
+/* ===== Reset ===== */
 * {
   box-sizing: border-box;
 }
@@ -14,17 +8,6 @@
 body {
   margin: 0;
   min-width: 320px;
-}
-
-.page-content a {
-  color: var(--accent);
-  text-decoration: none;
-  transition: color 0.2s;
-}
-
-.page-content a:hover {
-  text-decoration: underline;
-  color: var(--primary);
 }
 
 button {
@@ -36,25 +19,41 @@ button {
   color: inherit;
 }
 
-.page-content input, .page-content textarea, .page-content select {
+/* ===== Links ===== */
+.page-content a {
+  color: var(--primary);
+  text-decoration: none;
+  transition: color var(--transition);
+}
+
+.page-content a:hover {
+  color: var(--primary-hover);
+}
+
+/* ===== Form Elements ===== */
+.page-content input,
+.page-content textarea,
+.page-content select {
   font-family: inherit;
-  font-size: inherit;
-  background: var(--bg);
+  font-size: 0.9375rem;
+  background: var(--bg-surface);
   border: 1px solid var(--border);
-  border-radius: 8px;
-  padding: 10px 12px;
-  color: var(--text);
+  border-radius: var(--radius);
+  padding: 10px 14px;
+  color: var(--text-h);
   outline: none;
-  transition: border-color 0.2s, box-shadow 0.2s;
+  transition: border-color var(--transition), box-shadow var(--transition);
   width: 100%;
 }
 
-.page-content input:focus, .page-content textarea:focus, .page-content select:focus {
-  border-color: var(--accent);
-  box-shadow: 0 0 0 3px var(--accent-bg);
+.page-content input:focus,
+.page-content textarea:focus,
+.page-content select:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px var(--primary-light);
 }
 
-/* App Shell Layout */
+/* ===== Layout ===== */
 .app-shell {
   display: grid;
   grid-template-rows: auto 1fr;
@@ -63,7 +62,7 @@ button {
 }
 
 .page-content {
-  padding: 32px 24px;
+  padding: var(--space-xl) var(--space-lg);
   max-width: 1200px;
   margin: 0 auto;
   width: 100%;
@@ -75,32 +74,31 @@ button {
   width: 100%;
 }
 
-/* Page Containers */
 .auth-page {
-  max-width: 480px;
+  max-width: 440px;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  min-height: calc(100vh - 200px); /* Center vertically */
+  min-height: calc(100vh - 200px);
 }
 
-/* Typography Defaults — scoped to .page-content */
+/* ===== Typography ===== */
 .page-content h1 {
-  font-size: 2.25rem;
-  font-weight: 800;
+  font-size: 1.875rem;
+  font-weight: 700;
   letter-spacing: -0.025em;
-  margin-bottom: 1.5rem;
-  color: var(--primary);
+  margin-bottom: 1.25rem;
+  color: var(--text-h);
   line-height: 1.2;
 }
 
 .page-content h2 {
-  font-size: 1.5rem;
-  font-weight: 700;
-  letter-spacing: -0.025em;
+  font-size: 1.375rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
   margin-bottom: 1rem;
-  color: var(--text);
+  color: var(--text-h);
 }
 
 .page-content p {
@@ -109,107 +107,87 @@ button {
 }
 
 .lead {
-  font-size: 1.125rem;
+  font-size: 1.0625rem;
   color: var(--text);
-  margin-bottom: 2rem;
+  margin-bottom: var(--space-xl);
 }
 
-/* Shared Component Classes that might be used across pages */
+/* ===== Cards ===== */
 .card {
   background: var(--bg-surface);
   border: 1px solid var(--border);
-  border-radius: 16px;
-  padding: 32px;
-  box-shadow: var(--shadow);
-  transition: box-shadow 0.3s, transform 0.3s;
+  border-radius: var(--radius-lg);
+  padding: var(--space-xl);
+  box-shadow: var(--shadow-sm);
+  transition: box-shadow var(--transition);
 }
+
 .card:hover {
-  box-shadow: var(--shadow-md);
-  transform: translateY(-2px);
+  box-shadow: var(--shadow);
 }
 
 .welcome-card {
-  margin-bottom: 40px;
+  margin-bottom: var(--space-2xl);
   text-align: center;
   background: var(--bg-surface);
-  border-radius: 20px;
-  box-shadow: var(--shadow);
-  padding: 40px;
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-sm);
+  padding: var(--space-2xl);
+  border: 1px solid var(--border);
 }
 
 .actions-row {
   display: flex;
-  gap: 16px;
+  gap: var(--space-md);
   justify-content: center;
-  margin-top: 24px;
+  margin-top: var(--space-lg);
 }
 
 .button-link {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 12px 24px;
-  border-radius: 12px;
+  padding: 10px 20px;
+  border-radius: var(--radius);
   font-weight: 600;
-  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  font-size: 0.875rem;
+  transition: all var(--transition);
   background-color: var(--bg-surface);
   border: 1px solid var(--border);
   color: var(--text-h);
   cursor: pointer;
   text-decoration: none;
-  box-shadow: var(--shadow-sm);
 }
 
 .button-link:hover {
   border-color: var(--primary);
   color: var(--primary);
-  background-color: var(--accent-bg);
-  box-shadow: var(--shadow);
+  background-color: var(--primary-light);
   text-decoration: none;
 }
 
-/* Form Elements Global Styles — scoped to .page-content */
-.page-content input, .page-content select, .page-content textarea {
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  padding: 12px 16px;
-  font-size: 1rem;
-  font-family: inherit;
-  background-color: var(--bg-surface);
-  color: var(--text-h);
-  transition: all 0.2s;
-  box-shadow: var(--shadow-sm);
-}
-
-.page-content input:focus, .page-content select:focus, .page-content textarea:focus {
-  outline: none;
-  border-color: var(--primary);
-  box-shadow: 0 0 0 4px var(--accent-bg);
-}
-
-/* Utilities */
+/* ===== Utilities ===== */
 .section-title {
   display: flex;
   align-items: center;
-  margin-bottom: 24px;
-  margin-top: 40px;
-  padding-bottom: 10px;
-  border-bottom: 2px solid var(--border);
+  margin-bottom: var(--space-lg);
+  margin-top: var(--space-2xl);
+  padding-bottom: var(--space-sm);
+  border-bottom: 1px solid var(--border);
 }
 
 .hint-text {
-    text-align: center;
-    margin-top: 24px;
-    font-size: 0.95rem;
-    color: var(--text);
+  text-align: center;
+  margin-top: var(--space-lg);
+  font-size: 0.9375rem;
+  color: var(--text);
 }
 
 .hint-text a {
-    color: var(--secondary);
-    font-weight: 500;
+  color: var(--primary);
+  font-weight: 500;
 }
 
 .hint-text a:hover {
-    color: var(--primary);
-    text-decoration: underline;
+  color: var(--primary-hover);
 }

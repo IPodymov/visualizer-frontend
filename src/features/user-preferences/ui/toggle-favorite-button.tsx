@@ -1,54 +1,57 @@
 import { type MouseEvent } from "react";
-import { useDispatch, useSelector } from "react-redux";
 import {
-  addFavorite,
-  removeFavorite,
-  selectIsFavorite,
-  type FavoritePlan,
-} from "@/features/user-preferences/model/slice";
-import type { RootState } from "@/app/store/store";
-import type { AcademicPlan } from "@/entities/plan/model/types";
+  useGetFavoritesQuery,
+  useAddFavoriteMutation,
+  useRemoveFavoriteMutation,
+} from "@/entities/plan/api/plan-api";
+import { useAuth } from "@/entities/session/model/use-auth";
 
 type ToggleFavoriteButtonProps = {
-  plan: AcademicPlan;
-  specialtyName?: string;
+  planId: number;
   className?: string;
 };
 
 export const ToggleFavoriteButton = ({
-  plan,
-  specialtyName,
+  planId,
   className,
 }: ToggleFavoriteButtonProps) => {
-  const dispatch = useDispatch();
-  const isFavorite = useSelector((state: RootState) =>
-    selectIsFavorite(state, plan.id),
-  );
+  const { isAuthenticated } = useAuth();
+  const { data: favorites } = useGetFavoritesQuery(undefined, { skip: !isAuthenticated });
+  const [addFavorite, { isLoading: isAdding }] = useAddFavoriteMutation();
+  const [removeFavorite, { isLoading: isRemoving }] = useRemoveFavoriteMutation();
+
+  const isFavorite = favorites?.some((f) => f.id === planId) ?? false;
+  const isLoading = isAdding || isRemoving;
 
   const handleToggle = (e: MouseEvent) => {
-    e.preventDefault(); // Prevent navigation if inside Link
+    e.preventDefault();
     e.stopPropagation();
 
+    if (!isAuthenticated || isLoading) return;
+
     if (isFavorite) {
-      dispatch(removeFavorite(plan.id));
+      void removeFavorite(planId);
     } else {
-      const favoritePlan: FavoritePlan = { ...plan, specialtyName };
-      dispatch(addFavorite(favoritePlan));
+      void addFavorite(planId);
     }
   };
+
+  if (!isAuthenticated) return null;
 
   return (
     <button
       onClick={handleToggle}
+      disabled={isLoading}
       className={`favorite-btn ${isFavorite ? "active" : ""} ${className || ""}`}
       aria-label={isFavorite ? "Убрать из избранного" : "Добавить в избранное"}
       style={{
         background: "none",
         border: "none",
-        cursor: "pointer",
+        cursor: isLoading ? "wait" : "pointer",
         padding: "8px",
         color: isFavorite ? "#ffc107" : "#ccc",
         transition: "color 0.2s",
+        opacity: isLoading ? 0.5 : 1,
       }}
     >
       <svg

@@ -1,91 +1,89 @@
+/* ===== Plan Table ===== */
 .plan-table-wrapper {
-    /* margin: 20px 0; - Removed to prevent jump */
-    font-family: 'Inter', sans-serif;
-    font-size: 13px;
-    overflow-x: auto;
-    width: 100%;
-    max-width: 100%;
-    box-sizing: border-box;
-    /* Border is now handled by parent .plan-details styles */
+  font-family: var(--sans);
+  font-size: 13px;
+  overflow-x: auto;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
 }
 
 .plan-table {
-    width: 100%;
-    border-collapse: collapse;
-    background-color: var(--bg-surface);
-    min-width: 800px;
-    border: none; /* Let wrapper handle border */
+  width: 100%;
+  border-collapse: collapse;
+  background-color: var(--bg-surface);
+  min-width: 800px;
+  border: none;
 }
 
 .plan-table th,
 .plan-table td {
-    border: 1px solid var(--border);
-    padding: 8px;
-    text-align: center;
+  border: 1px solid var(--border);
+  padding: 8px;
+  text-align: center;
 }
-/* ... rest ... */
 
 .plan-table th {
-    background-color: var(--code-bg);
-    font-weight: 600;
-    vertical-align: middle;
+  background-color: var(--code-bg);
+  font-weight: 600;
+  vertical-align: middle;
+  color: var(--text-h);
 }
 
 .plan-table td.text-left {
-    text-align: left;
+  text-align: left;
 }
 
 .plan-table thead th.rotate {
-    height: 100px;
-    white-space: nowrap;
+  height: 100px;
+  white-space: nowrap;
 }
 
 .plan-table thead th.rotate > div {
-    transform: rotate(270deg);
-    width: 30px;
+  transform: rotate(270deg);
+  width: 30px;
 }
 
 .plan-details-summary {
-    cursor: pointer;
-    font-weight: bold;
-    padding: 10px;
-    background-color: var(--bg);
-    border-radius: 8px;
-    margin-bottom: 10px;
-    user-select: none;
-    list-style: none; /* Hide default triangle */
+  cursor: pointer;
+  font-weight: 600;
+  padding: 10px;
+  background-color: var(--bg);
+  border-radius: var(--radius);
+  margin-bottom: 10px;
+  user-select: none;
+  list-style: none;
+  color: var(--text-h);
 }
 
-/* Custom indicator for summary */
 .plan-details-summary::-webkit-details-marker {
-    display: none;
+  display: none;
 }
 
 .plan-details-summary::after {
-    content: '+';
-    float: right;
-    font-weight: bold;
+  content: '+';
+  float: right;
+  font-weight: 600;
 }
 
 details[open] .plan-details-summary::after {
-    content: '-';
+  content: '−';
 }
 
 .control-type {
-    font-size: 11px;
-    color: var(--text);
-    display: block;
+  font-size: 11px;
+  color: var(--text-muted);
+  display: block;
 }
 
 .semester-headers th {
-    background-color: var(--border);
+  background-color: var(--border);
 }
 
-/* Zebra striping */
 .plan-table tbody tr:nth-child(even) {
-    background-color: var(--code-bg);
+  background-color: var(--code-bg);
 }
 
 .plan-table tbody tr:hover {
-    background-color: var(--accent-bg);
+  background-color: var(--primary-light);
 }

@@ -1,15 +1,15 @@
+/* ===== Computing Landscape ===== */
 .landscape-wrapper {
-  margin-top: 32px;
+  margin-top: var(--space-xl);
   background-color: var(--bg-surface);
   border: 1px solid var(--border);
-  border-radius: 8px;
+  border-radius: var(--radius-lg);
   overflow: hidden;
-  box-shadow: var(--shadow-sm);
 }
 
 .landscape-container {
   width: 100%;
-  padding: 16px;
+  padding: var(--space-md);
   background-color: var(--bg);
   display: flex;
   justify-content: center;
@@ -19,46 +19,46 @@
   width: 100%;
   max-width: 800px;
   min-height: 560px;
-  padding: 16px;
+  padding: var(--space-md);
   font-family: var(--sans);
   background-color: var(--bg-surface);
-  border-radius: 4px;
+  border-radius: var(--radius);
   border: 1px solid var(--border);
 }
 
 .landscape-title {
-  margin: 0 0 12px;
+  margin: 0 0 var(--space-sm);
   text-align: center;
-  font-size: 22px;
-  font-weight: bold;
+  font-size: 1.125rem;
+  font-weight: 600;
   color: var(--text-h);
 }
 
 .landscape-caption {
-  margin: 8px 0 0;
+  margin: var(--space-sm) 0 0;
   text-align: center;
-  color: var(--text);
-  font-size: 13px;
+  color: var(--text-muted);
+  font-size: 0.8125rem;
 }
 
 .landscape-tooltip {
-  max-width: 320px;
+  max-width: 300px;
   padding: 10px 12px;
   border: 1px solid var(--border);
-  border-radius: 8px;
-  background-color: color-mix(in srgb, var(--bg-surface) 98%, transparent);
-  box-shadow: var(--shadow-md);
+  border-radius: var(--radius);
+  background-color: var(--bg-surface);
+  box-shadow: var(--shadow-lg);
 }
 
 .tooltip-title {
-  font-size: 13px;
-  font-weight: 700;
+  font-size: 0.8125rem;
+  font-weight: 600;
   color: var(--text-h);
   margin-bottom: 4px;
 }
 
 .tooltip-count {
-  font-size: 12px;
+  font-size: 0.75rem;
   color: var(--text);
   margin-bottom: 6px;
 }
@@ -66,29 +66,29 @@
 .tooltip-list {
   margin: 0;
   padding: 0 0 0 14px;
-  max-height: 146px;
+  max-height: 140px;
   overflow-y: auto;
   color: var(--text);
-  font-size: 12px;
-  line-height: 1.35;
+  font-size: 0.75rem;
+  line-height: 1.4;
 }
 
 .tooltip-empty {
-  color: var(--text);
-  font-size: 12px;
+  color: var(--text-muted);
+  font-size: 0.75rem;
 }
 
 @media (max-width: 900px) {
   .landscape-chart-surface {
     min-height: 500px;
-    padding: 10px;
+    padding: var(--space-sm);
   }
 
   .landscape-title {
-    font-size: 19px;
+    font-size: 1rem;
   }
 
   .landscape-tooltip {
-    max-width: 250px;
+    max-width: 240px;
   }
 }

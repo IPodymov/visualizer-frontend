@@ -6,7 +6,7 @@ import {
   useGetPlansQuery,
   useGetSpecialtiesQuery,
   useGetFacultiesQuery,
-  type Specialty,
+  type PlansQueryParams,
 } from "@/entities/plan";
 import { ToggleFavoriteButton } from "@/features/user-preferences";
 import { ROUTES } from "@/shared/lib/routes";
@@ -14,13 +14,6 @@ import "@/pages/plans-page/ui/plans-page.css";
 
 export const PlansPage = () => {
   const { isAuthenticated } = useAuth();
-  const {
-    data: plans,
-    isLoading: plansLoading,
-    error: plansError,
-  } = useGetPlansQuery({});
-  const { data: specialties } = useGetSpecialtiesQuery({});
-  const { data: faculties } = useGetFacultiesQuery({});
 
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedYear, setSelectedYear] = useState<string>("all");
@@ -31,10 +24,23 @@ export const PlansPage = () => {
   );
   const [visibleCount, setVisibleCount] = useState(12);
 
-  const specialtyMap = useMemo(() => {
-    if (!specialties) return new Map<number, Specialty>();
-    return new Map(specialties.map((s) => [s.id, s]));
-  }, [specialties]);
+  // Build server-side query params
+  const queryParams = useMemo<PlansQueryParams>(() => {
+    const params: PlansQueryParams = { limit: 500 };
+    if (selectedYear !== "all") params.year = Number(selectedYear);
+    if (selectedFaculty !== "all") params.faculty_id = Number(selectedFaculty);
+    if (selectedLevel !== "all") params.level = selectedLevel;
+    if (searchQuery.trim()) params.search = searchQuery.trim();
+    return params;
+  }, [searchQuery, selectedYear, selectedFaculty, selectedLevel]);
+
+  const {
+    data: plans,
+    isLoading: plansLoading,
+    error: plansError,
+  } = useGetPlansQuery(queryParams);
+  const { data: specialties } = useGetSpecialtiesQuery({});
+  const { data: faculties } = useGetFacultiesQuery({});
 
   const specialtyNameMap = useMemo(() => {
     if (!specialties) return new Map<number, string>();
@@ -47,33 +53,8 @@ export const PlansPage = () => {
     return Array.from(years).sort((a, b) => b - a);
   }, [plans]);
 
-  const filteredPlans = useMemo(() => {
-    if (!plans) return [];
-    return plans.filter((plan) => {
-      const specialty = specialtyMap.get(plan.specialty_id);
-      const specialtyName = specialtyNameMap.get(plan.specialty_id) || "";
-      const matchesSearch = specialtyName
-        .toLowerCase()
-        .includes(searchQuery.toLowerCase());
-      const matchesYear =
-        selectedYear === "all" || plan.admission_year === Number(selectedYear);
-      const matchesFaculty =
-        selectedFaculty === "all" ||
-        (specialty && specialty.faculty_id === Number(selectedFaculty));
-      const matchesLevel =
-        selectedLevel === "all" ||
-        (specialty && specialty.level === selectedLevel);
-      return matchesSearch && matchesYear && matchesFaculty && matchesLevel;
-    });
-  }, [
-    plans,
-    searchQuery,
-    selectedYear,
-    selectedFaculty,
-    selectedLevel,
-    specialtyMap,
-    specialtyNameMap,
-  ]);
+  // Server handles filtering, so we just use the returned data directly
+  const filteredPlans = plans ?? [];
 
   const uniqueLevels = useMemo(() => {
     if (!specialties) return [];
@@ -281,10 +262,11 @@ export const PlansPage = () => {
                     plan={plan}
                     specialtyName={specialtyNameMap.get(plan.specialty_id)}
                     actionSlot={
-                      <ToggleFavoriteButton
-                        plan={plan}
-                        specialtyName={specialtyNameMap.get(plan.specialty_id)}
-                      />
+                      isAuthenticated ? (
+                        <ToggleFavoriteButton
+                          planId={plan.id}
+                        />
+                      ) : undefined
                     }
                   />
                 </div>

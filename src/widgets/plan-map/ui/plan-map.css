@@ -1,39 +1,35 @@
+/* ===== Plan Map ===== */
 .plan-map-wrapper {
-  /* margin-top: 16px; - Removed to prevent jump */
   background-color: var(--bg-surface);
-  /* border: 1px solid var(--border); */
-  /* Remove wrapper border if unnecessary within details block */
-  /* border-radius: 4px; - Handled by parent */
   overflow: hidden;
-  /* width: 100%; - Handled by parent */
-  max-width: 100%; /* Ensure strict container width */
+  max-width: 100%;
 }
 
 .plan-map-container {
   width: 100%;
   max-width: 100%;
   overflow-x: auto;
-  font-family: var(--sans, sans-serif);
-  padding: 16px;
-  box-sizing: border-box; /* Crucial for width: 100% + padding */
+  font-family: var(--sans);
+  padding: var(--space-md);
+  box-sizing: border-box;
 }
 
 .plan-map-controls {
   display: flex;
   justify-content: flex-end;
-  padding: 0 16px 16px; 
+  padding: 0 var(--space-md) var(--space-md);
 }
 
 .pdf-download-btn {
   padding: 8px 16px;
   background-color: var(--primary);
-  color: white;
+  color: #fff;
   border: none;
   cursor: pointer;
-  border-radius: 6px;
-  font-size: 0.9rem;
+  border-radius: var(--radius);
+  font-size: 0.8125rem;
   font-weight: 500;
-  transition: background-color 0.2s;
+  transition: background-color var(--transition);
 }
 
 .pdf-download-btn:hover {
@@ -42,49 +38,43 @@
 
 .plan-grid {
   display: grid;
-  /* 50px for Z.E. column, rest flexible but minimum 140px */
-  gap: 8px; /* Slightly larger gap for cleaner look */
+  gap: 6px;
   padding: 4px;
   background-color: var(--bg-surface);
-  /* No outer border for the grid itself, clean look */
 }
 
-/* Header Cells (Semesters) */
 .semester-header {
-  background-color: var(--code-bg); /* Slate 100 */
-  color: var(--text);
+  background-color: var(--code-bg);
+  color: var(--text-h);
   font-weight: 600;
   text-align: center;
   padding: 8px;
-  border-radius: 6px;
+  border-radius: var(--radius-sm);
   grid-row: 1;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 0.9rem;
-  box-shadow: var(--shadow-sm); /* Subtle depth */
+  font-size: 0.8125rem;
 }
 
-/* Row Headers (Z.E. numbers) */
 .ze-header {
-  background-color: var(--bg); 
-  color: var(--text); /* Slate 400 */
+  background-color: var(--bg);
+  color: var(--text-muted);
   text-align: center;
-  font-size: 0.8rem;
+  font-size: 0.75rem;
   font-weight: 500;
-  border-radius: 6px;
+  border-radius: var(--radius-sm);
   display: flex;
   align-items: center;
   justify-content: center;
   grid-column: 1;
 }
 
-/* Plan Items */
 .plan-item {
   padding: 4px;
-  font-size: 0.75rem;
+  font-size: 0.6875rem;
   line-height: 1.25;
-  border-radius: 6px;
+  border-radius: var(--radius-sm);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -93,44 +83,19 @@
   word-break: break-word;
   hyphens: auto;
   color: var(--text-h);
-  transition: transform 0.15s, box-shadow 0.15s;
-  border: 1px solid transparent; /* Prepare for border color matches */
+  transition: box-shadow var(--transition);
+  border: 1px solid transparent;
 }
 
 .plan-item:hover {
-  transform: translateY(-2px);
   box-shadow: var(--shadow-md);
   z-index: 10;
 }
 
-/* Pastel Color Schemes matching the image vibe */
-/* 1: Yellow/Beige */
-.color-scheme-1 { 
-    background-color: var(--map-c1-bg);
-    border-color: var(--map-c1-border);
-} 
-/* 2: Green/Teal */
-.color-scheme-2 { 
-    background-color: var(--map-c2-bg);
-    border-color: var(--map-c2-border);
-}
-/* 3: Blue */
-.color-scheme-3 { 
-    background-color: var(--map-c3-bg);
-    border-color: var(--map-c3-border);
-}
-/* 4: Purple */
-.color-scheme-4 { 
-    background-color: var(--map-c4-bg);
-    border-color: var(--map-c4-border);
-}
-/* 5: Red/Rose */
-.color-scheme-5 { 
-    background-color: var(--map-c5-bg);
-    border-color: var(--map-c5-border);
-}
-/* 6: Indigo */
-.color-scheme-6 { 
-    background-color: var(--map-c6-bg);
-    border-color: var(--map-c6-border);
-}
+/* Color schemes */
+.color-scheme-1 { background-color: var(--map-c1-bg); border-color: var(--map-c1-border); }
+.color-scheme-2 { background-color: var(--map-c2-bg); border-color: var(--map-c2-border); }
+.color-scheme-3 { background-color: var(--map-c3-bg); border-color: var(--map-c3-border); }
+.color-scheme-4 { background-color: var(--map-c4-bg); border-color: var(--map-c4-border); }
+.color-scheme-5 { background-color: var(--map-c5-bg); border-color: var(--map-c5-border); }
+.color-scheme-6 { background-color: var(--map-c6-bg); border-color: var(--map-c6-border); }

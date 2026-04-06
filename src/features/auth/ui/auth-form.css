@@ -1,29 +1,32 @@
+/* ===== Auth Form ===== */
 .auth-card {
   max-width: 400px;
-  margin: 40px auto;
-  padding: 32px;
+  margin: var(--space-2xl) auto;
+  padding: var(--space-xl);
   background-color: var(--bg-surface);
   border: 1px solid var(--border);
-  border-radius: 20px;
-  box-shadow: var(--shadow-md);
+  border-radius: var(--radius-xl);
 }
 
 .auth-card h1 {
   text-align: center;
-  margin-bottom: 24px;
+  margin-bottom: var(--space-lg);
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--text-h);
 }
 
 .auth-form {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: var(--space-md);
 }
 
 .auth-form label {
   display: flex;
   flex-direction: column;
-  gap: 8px;
-  font-size: 0.95rem;
+  gap: var(--space-sm);
+  font-size: 0.875rem;
   font-weight: 500;
   color: var(--text);
 }
@@ -33,32 +36,30 @@
 }
 
 .auth-form button[type="submit"] {
-  margin-top: 8px;
-  padding: 14px;
+  margin-top: var(--space-sm);
+  padding: 12px;
   background-color: var(--primary);
-  color: var(--text-inverse);
+  color: #fff;
   border: none;
-  border-radius: 12px;
-  font-size: 1rem;
+  border-radius: var(--radius);
+  font-size: 0.9375rem;
   font-weight: 600;
   cursor: pointer;
-  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-  box-shadow: 0 4px 12px var(--accent-border);
+  transition: background-color var(--transition);
 }
 
 .auth-form button[type="submit"]:hover:not(:disabled) {
-  transform: translateY(-2px);
   background-color: var(--primary-hover);
 }
 
 .auth-form button[type="submit"]:disabled {
   background-color: var(--border);
-  color: var(--text);
-  box-shadow: none;
+  color: var(--text-muted);
   cursor: not-allowed;
 }
 
 .error-text {
   text-align: center;
-  font-size: 0.9rem;
+  font-size: 0.875rem;
+  color: var(--danger);
 }

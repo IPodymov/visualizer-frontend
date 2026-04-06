@@ -1,11 +1,12 @@
 import { useParams, Link } from "react-router-dom";
 import { useEffect, lazy, Suspense } from "react";
-import { useDispatch } from "react-redux";
-import { useGetPlanByIdQuery, useGetSpecialtyByIdQuery } from "@/entities/plan";
 import {
-  addToHistory,
-  ToggleFavoriteButton,
-} from "@/features/user-preferences";
+  useGetPlanByIdQuery,
+  useGetSpecialtyByIdQuery,
+  useAddToHistoryMutation,
+} from "@/entities/plan";
+import { ToggleFavoriteButton } from "@/features/user-preferences";
+import { useAuth } from "@/entities/session";
 import { PlanMap } from "@/widgets/plan-map";
 import { PlanTable } from "@/widgets/plan-table";
 import { ROUTES } from "@/shared/lib/routes";
@@ -19,7 +20,8 @@ const ComputingLandscape = lazy(async () => {
 export const PlanDetailsPage = () => {
   const { id } = useParams<{ id: string }>();
   const planId = Number(id);
-  const dispatch = useDispatch();
+  const { isAuthenticated } = useAuth();
+  const [addToHistory] = useAddToHistoryMutation();
 
   const {
     data: plan,
@@ -37,15 +39,10 @@ export const PlanDetailsPage = () => {
   );
 
   useEffect(() => {
-    if (plan && specialty) {
-      dispatch(
-        addToHistory({
-          ...plan,
-          specialtyName: `${specialty.code} ${specialty.name}`,
-        }),
-      );
+    if (plan && isAuthenticated) {
+      void addToHistory(plan.id);
     }
-  }, [plan, specialty, dispatch]);
+  }, [plan, isAuthenticated, addToHistory]);
 
   if (isLoading) {
     return <div className="page-state">Загрузка плана...</div>;
@@ -74,7 +71,7 @@ export const PlanDetailsPage = () => {
               ? `${specialty.code} ${specialty.name}`
               : `Специальность #${plan.specialty_id}`}
           </h1>
-          <ToggleFavoriteButton plan={plan} specialtyName={specialty?.name} />
+          <ToggleFavoriteButton planId={plan.id} />
         </div>
 
         <div className="header-meta">
@@ -82,13 +79,33 @@ export const PlanDetailsPage = () => {
             <span className="meta-label">Год набора</span>
             <span className="meta-value">{plan.admission_year}</span>
           </div>
+          {plan.qualification && (
+            <div className="meta-item">
+              <span className="meta-label">Квалификация</span>
+              <span className="meta-value">{plan.qualification}</span>
+            </div>
+          )}
+          {plan.study_form && (
+            <div className="meta-item">
+              <span className="meta-label">Форма обучения</span>
+              <span className="meta-value">
+                {plan.study_form === "full_time"
+                  ? "Очная"
+                  : plan.study_form === "part_time"
+                    ? "Заочная"
+                    : "Дистанционная"}
+              </span>
+            </div>
+          )}
+          {plan.study_duration && (
+            <div className="meta-item">
+              <span className="meta-label">Срок обучения</span>
+              <span className="meta-value">{plan.study_duration}</span>
+            </div>
+          )}
           <div className="meta-item">
             <span className="meta-label">Дисциплин</span>
             <span className="meta-value">{plan.items.length}</span>
-          </div>
-          <div className="meta-item">
-            <span className="meta-label">ID Плана</span>
-            <span className="meta-value">#{plan.id}</span>
           </div>
         </div>
       </div>

@@ -1,58 +1,57 @@
+/* ===== Profile Page ===== */
 .profile-page {
-    padding: 24px;
-    max-width: 1200px;
-    margin: 0 auto;
+  padding: var(--space-lg);
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 .profile-header {
-    margin-bottom: 32px;
+  margin-bottom: var(--space-xl);
 }
 
 .user-info {
-    margin-top: 12px;
-}
-
-.user-name {
-    font-size: 1.25rem;
-    font-weight: 600;
+  margin-top: var(--space-sm);
 }
 
 .profile-section {
-    margin-bottom: 48px;
+  margin-bottom: var(--space-2xl);
 }
 
 .plans-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 20px;
-    margin-top: 16px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: var(--space-lg);
+  margin-top: var(--space-md);
 }
 
 .plan-wrapper {
-    position: relative;
-    /* aspect-ratio matches PlanCard typical aspect ratio, otherwise it grows */
+  position: relative;
 }
 
 .empty-state {
-    color: var(--text-muted);
-    font-size: 1rem;
-    padding: 16px;
-    background: var(--bg-surface);
-    border-radius: 8px;
-    text-align: center;
+  color: var(--text-muted);
+  font-size: 0.9375rem;
+  padding: var(--space-md);
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  text-align: center;
 }
 
 .section-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .clear-history-btn {
-    background: none;
-    border: none;
-    color: var(--danger);
-    cursor: pointer;
-    font-size: 0.9rem;
-    text-decoration: underline;
+  background: none;
+  border: none;
+  color: var(--danger);
+  cursor: pointer;
+  font-size: 0.8125rem;
+}
+
+.clear-history-btn:hover {
+  color: var(--danger-hover);
 }

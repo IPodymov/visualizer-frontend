@@ -1,113 +1,102 @@
+/* ===== How It Works ===== */
 .how-it-works {
   padding: 80px 0;
 }
 
 @media (min-width: 768px) {
-  .how-it-works {
-    padding: 112px 0;
-  }
+  .how-it-works { padding: 100px 0; }
 }
 
 .how-it-works__container {
-  max-width: 1152px;
+  max-width: 1100px;
   margin: 0 auto;
-  padding: 0 24px;
+  padding: 0 var(--space-lg);
 }
 
 .how-it-works__heading {
   text-align: center;
-  margin-bottom: 64px;
+  margin-bottom: var(--space-3xl);
 }
 
 .how-it-works__title {
-  font-size: 1.875rem;
-  font-weight: 800;
+  font-size: 1.75rem;
+  font-weight: 700;
   color: var(--text-h);
-  margin-bottom: 16px;
+  margin-bottom: var(--space-md);
 }
 
 @media (min-width: 768px) {
-  .how-it-works__title {
-    font-size: 2.25rem;
-  }
+  .how-it-works__title { font-size: 2rem; }
 }
 
 .how-it-works__subtitle {
-  font-size: 1.125rem;
+  font-size: 1rem;
   color: var(--text);
-  max-width: 672px;
+  max-width: 600px;
   margin: 0 auto;
+  line-height: 1.6;
 }
 
 .how-it-works__grid {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 32px;
+  gap: var(--space-lg);
 }
 
 @media (min-width: 768px) {
-  .how-it-works__grid {
-    grid-template-columns: repeat(3, 1fr);
-  }
+  .how-it-works__grid { grid-template-columns: repeat(3, 1fr); }
 }
 
-/* Step Card (Feature Card) */
 .step-card {
   position: relative;
   background: var(--bg-surface);
-  border-radius: 16px;
-  padding: 32px;
+  border-radius: var(--radius-lg);
+  padding: var(--space-xl);
   border: 1px solid var(--border);
-  box-shadow: var(--shadow-sm);
-  transition: all 0.3s;
+  transition: box-shadow var(--transition);
 }
 
 .step-card:hover {
-  box-shadow: var(--shadow-md);
-  transform: translateY(-4px);
+  box-shadow: var(--shadow);
 }
 
 .step-card__number {
   position: absolute;
-  top: 16px;
-  right: 16px;
-  font-size: 3.75rem;
-  font-weight: 900;
+  top: var(--space-md);
+  right: var(--space-md);
+  font-size: 3rem;
+  font-weight: 800;
   color: var(--code-bg);
   user-select: none;
   line-height: 1;
 }
 
 .step-card__icon-wrap {
-  width: 56px;
-  height: 56px;
-  border-radius: 12px;
-  background: var(--accent-bg);
+  width: 48px;
+  height: 48px;
+  border-radius: var(--radius);
+  background: var(--primary-light);
   color: var(--primary);
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 20px;
-  transition: transform 0.3s;
-}
-
-.step-card:hover .step-card__icon-wrap {
-  transform: scale(1.1);
+  margin-bottom: var(--space-md);
 }
 
 .step-card__icon {
-  width: 28px;
-  height: 28px;
+  width: 24px;
+  height: 24px;
 }
 
 .step-card__title {
-  font-size: 1.25rem;
-  font-weight: 700;
+  font-size: 1.125rem;
+  font-weight: 600;
   color: var(--text-h);
-  margin-bottom: 12px;
+  margin-bottom: var(--space-sm);
 }
 
 .step-card__desc {
   color: var(--text);
   line-height: 1.6;
+  font-size: 0.9375rem;
 }

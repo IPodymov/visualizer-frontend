@@ -19,6 +19,10 @@ export const PlanCard = ({
     (sum, item) => sum + item.total_hours,
     0,
   );
+  const totalCredits = plan.items.reduce(
+    (sum, item) => sum + item.credits,
+    0,
+  );
   const disciplinesCount = plan.items.length;
   const semesters = new Set(plan.items.map((i) => i.semester)).size;
 
@@ -42,6 +46,14 @@ export const PlanCard = ({
           {specialtyName ?? `Специальность #${plan.specialty_id}`}
         </h3>
 
+        {plan.profile && (
+          <p className="plan-card__profile">{plan.profile}</p>
+        )}
+
+        {plan.qualification && (
+          <p className="plan-card__qualification">{plan.qualification}</p>
+        )}
+
         <div className="plan-card__meta">
           <div className="plan-card__meta-item">
             <span className="meta-value">{disciplinesCount}</span>
@@ -54,8 +66,8 @@ export const PlanCard = ({
           </div>
           <div className="plan-card__meta-divider"></div>
           <div className="plan-card__meta-item">
-            <span className="meta-value">{totalHours}</span>
-            <span className="meta-label">час.</span>
+            <span className="meta-value">{totalCredits > 0 ? totalCredits : totalHours}</span>
+            <span className="meta-label">{totalCredits > 0 ? 'ЗЕТ' : 'час.'}</span>
           </div>
         </div>
 
