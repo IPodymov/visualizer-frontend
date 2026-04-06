@@ -1,4 +1,4 @@
-import { type ReactElement, lazy, Suspense } from "react";
+import { type ReactElement, lazy, Suspense, useEffect } from "react";
 import {
   BrowserRouter,
   Navigate,
@@ -62,12 +62,21 @@ const GuestOnly = ({ children }: { children: ReactElement }) => {
   return children;
 };
 
+const ScrollToTop = () => {
+  const { pathname } = useLocation();
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+  return null;
+};
+
 const AppLayout = () => {
   const location = useLocation();
   const isLanding = location.pathname === ROUTES.HOME;
 
   return (
     <div className="app-shell">
+      <ScrollToTop />
       <Header />
       <main className={isLanding ? "" : "page-content"}>
         <Suspense fallback={<PageLoader />}>

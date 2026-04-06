@@ -85,7 +85,7 @@ button {
   min-height: calc(100vh - 200px); /* Center vertically */
 }
 
-/* Typography Defaults — scoped to .page-content to avoid conflicts with Tailwind on landing */
+/* Typography Defaults — scoped to .page-content */
 .page-content h1 {
   font-size: 2.25rem;
   font-weight: 800;
