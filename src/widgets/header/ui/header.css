@@ -45,6 +45,22 @@
   color: var(--primary);
 }
 
+.nav-link {
+  text-decoration: none;
+  color: var(--text) !important;
+  font-weight: 600;
+  font-size: 0.95rem;
+  padding: 6px 14px;
+  border-radius: 8px;
+  transition: all 0.15s;
+}
+
+.nav-link:hover {
+  color: var(--primary) !important;
+  background-color: var(--accent-bg);
+  text-decoration: none;
+}
+
 .ghost-button {
   background: none;
   border: none;

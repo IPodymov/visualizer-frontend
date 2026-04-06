@@ -26,6 +26,9 @@ export const Header = () => {
       </Link>
 
       <nav className="nav-links">
+        <Link to={ROUTES.PLANS} className="nav-link">
+          Учебные планы
+        </Link>
         {isAuthenticated ? (
           <div className="user-dropdown-container" ref={dropdownRef}>
             <button

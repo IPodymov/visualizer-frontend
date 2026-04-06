@@ -23,7 +23,7 @@ export const RegisterForm = () => {
             password,
             fullName: fullName ?? '',
           });
-          navigate(ROUTES.HOME);
+          void navigate(ROUTES.HOME);
         } catch (error) {
           console.error('Registration error:', error);
           throw error;

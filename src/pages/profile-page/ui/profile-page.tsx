@@ -1,5 +1,5 @@
 // src/pages/profile-page/ui/profile-page.tsx
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import {
   selectFavorites,
   selectHistory,
@@ -9,7 +9,6 @@ import {
 import { PlanCard } from '@/entities/plan';
 import { useAuth } from '@/entities/session';
 import '@/pages/profile-page/ui/profile-page.css';
-import { useDispatch } from 'react-redux';
 
 export const ProfilePage = () => {
   const { user } = useAuth();

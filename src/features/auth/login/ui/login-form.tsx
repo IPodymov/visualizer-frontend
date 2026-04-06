@@ -19,7 +19,7 @@ export const LoginForm = () => {
         setIsLoading(true)
         try {
           await signIn({ email, password })
-          navigate(ROUTES.HOME)
+          void navigate(ROUTES.HOME)
         } finally {
           setIsLoading(false)
         }

@@ -1,5 +1,6 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
+import tailwindcss from '@tailwindcss/vite'
 import path from 'node:path'
 import fs from 'node:fs'
 
@@ -28,7 +29,7 @@ export default defineConfig(() => {
   }
   
   return {
-    plugins: [react()],
+    plugins: [react(), tailwindcss()],
     // Указываем несуществующую директорию, чтобы Vite не читал дефолтные .env* файлы
     envDir: './non-existent-env-dir',
     define,
@@ -38,6 +39,8 @@ export default defineConfig(() => {
       },
     },
     server: {
+      port: env.PORT ? parseInt(env.PORT) : 5173,
+      strictPort: true,
       proxy: {
         '/api': {
           target: env.VITE_API_URL,

@@ -18,7 +18,7 @@ const loadState = (): UserPreferencesState => {
     if (serializedState === null) {
       return { favorites: [], history: [] }
     }
-    return JSON.parse(serializedState)
+    return JSON.parse(serializedState) as UserPreferencesState
   } catch {
     return { favorites: [], history: [] }
   }

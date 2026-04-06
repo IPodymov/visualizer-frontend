@@ -153,15 +153,13 @@ export const UnifiedLandscapeChart = ({
           tick={{ fill: "var(--text)", fontSize: 11 }}
         />
         <Tooltip
-          formatter={(value, name) => [
-            `${value} дисциплин`,
-            chartSeries.find((series) => series.key === name)?.label ?? name,
+          formatter={(value: unknown, name: unknown) => [
+            `${String(value)} дисциплін`,
+            chartSeries.find((series) => series.key === name)?.label ?? String(name),
           ]}
-          labelFormatter={(label, payload) => {
-            const point = payload?.[0]?.payload as
-              | { fullName?: string }
-              | undefined;
-            return point?.fullName ?? label;
+          labelFormatter={(_label: unknown, payload: ReadonlyArray<{ payload?: { fullName?: string } }>) => {
+            const point = payload?.[0]?.payload;
+            return point?.fullName ?? String(_label);
           }}
         />
         <Legend />
